@@ -3,109 +3,45 @@
    $data = \Carbon\Carbon::today()->subDays(7)
 @endphp
 @forelse($products as $product)
-   <div class="element-item filter1">
-      <div class="product small">
-         <div class="product_inside" style="margin-bottom: -2.3rem">
-            <div class="image-box">
-               <a class="promo-box zoom-in design-default load_page"
-                  href="{{ route('front.show',$product->product_slug) }}">
-                  <img src="{{ $product->thumbnail }}" alt="product image" class="img-responsive img-thumbnail">
-                  @if($product->is_off == 1)
-                     <div class="label-sale ">Sale<br>{{ $product->off }}% Off</div>
-                  @endif
-                  @if($product->created_at > $data)
-                     <div class="label-new">New</div>
-                  @endif
-                  @if($product->status != 1)
-                     <div class="label-sale">coming soon!</div>
-                  @endif
-               </a>
-               <a href="{{ route('front.show',$product->product_slug) }}" class="load_page"
-                  class="quick-view">
-                  {{-- <span>
-                      <span class="icon icon-visibility"></span>QUICK VIEW
-                   </span>--}}
-               </a>
-               @if($product->status != 1)
-                  <div class="countdown_box">
-                     <div class="countdown_inner">
-                        <div class="countdown" data-date="{{ $product->data_available }}"><span class="countdown-row"><span class="countdown-section"><span class="countdown-amount">0</span><span class="countdown-period">Day</span></span><span class="countdown-section"><span class="countdown-amount">0</span><span class="countdown-period">Hrs</span></span><span class="countdown-section"><span class="countdown-amount">0</span><span class="countdown-period">Min</span></span><span class="countdown-section"><span class="countdown-amount">0</span><span class="countdown-period">Sec</span></span></span></div>
-                     </div>
-                  </div>
-               @endif
+<div class="col-12">
+    <div class="single-product">
+        <div class="product-img">
+            {{-- <span class="pro-label new-label">new</span> --}}
+            @if($product->is_off == 1)
+                <span class="pro-label new-label">Sale {{ $product->off }}% Off</span>
+            @endif
+            @if($product->created_at > $data)
+                <span class="pro-label new-label">New</span>
+            @endif
+            @if($product->status != 1)
+                <span class="pro-label new-label">comming soon!</span>
+            @endif
+            <span class="pro-price-2">$ {{ $product->price }}</span>
+            <a href="{{ route('front.show',$product->product_slug) }}"><img src="{{ $product->cover }}" alt="" /></a>
+        </div>
+        <div class="product-info clearfix text-center">
+            <div class="fix">
+                <h4 class="post-title"><a href="{{ route('front.show',$product->product_slug) }}">{{ $product->product_name }}</a></h4>
             </div>
-            <h2 class="title">
-               <a class="bolder"
-                  href="{{ route('front.show',$product->product_slug) }}" class="load_page">{{ $product->product_name }} </a>
-            </h2>
-            <div class="price">
-               @if($product->is_off == 1)
-                  <span class="new-price">{{ number_format($product->sale_price) }}</span>
-                  <span class="old-price">{{ $product->price }}</span>
-               @else
-                  <span class="price view">{{ $product->price }}</span>
-               @endif
-            </div>
-            {{-- <div class="description">
-                Silver, metallic-blue and metallic-lavender silk-blend jacquard, graphic pattern, pleated ruffle along collar, long sleeves with button-fastening cuffs, buckle-fastening silver skinny belt, large pleated rosettes at hips. Dry clean. Zip and hook fastening at back. 100% silk. Specialist clean
-             </div>--}}
-            <div class="product_inside_hover">
-               <div class="product_inside_info">
-                  <!--  COLOR -->
-               {{--<ul class="options-swatch options-swatch-color">
-                  <li>
-                     <a href="#">
-                        <span class="swatch-label color-dark-grey"></span>
-                     </a>
-                  </li>
-                  <li class="active">
-                     <a href="#">
-                        <span class="swatch-label color-pale-gold"></span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                        <span class="swatch-label color-white border-bg"></span>
-                     </a>
-                  </li>
-               </ul>--}}
-               <!-- /COLOR -->
-                  <div class="rating">
-                     @for( $i = 0 ; $i < round($product->averageRating) ; $i++)
-                        <span class="icon-star"></span>
+            <div class="fix">
+                <span class="pro-rating">
+                    @for( $i = 0 ; $i < round($product->averageRating) ; $i++)
+                    <a href="#"><i class="zmdi zmdi-star"></i></a>
                      @endfor
                      @for( $i = 5 ; $i > round($product->averageRating) ; $i--)
-                        <span class="icon-star empty-star"></span>
+                     <a href="#"><i class="zmdi zmdi-star-half"></i></a>
                      @endfor
-                  </div>
-                  {{-- <a class="btn btn-product_addtocart" href="#" data-toggle="modal"
-                      data-target="#modalAddToCartProduct">
-                      <span class="icon icon-shopping_basket"></span>ADD TO CART
-                   </a>--}}
-                  {{--<ul class="product_inside_info_link">
-                     <li class="text-right">
-                        <a href="#" class="wishlist-link">
-                           <span class="fa fa-heart-o"></span>
-                           <span class="text">Add to wishlist</span>
-                        </a>
-                     </li>
-                     <li class="text-left">
-                        <a href="#" class="compare-link">
-                           <span class="fa fa-balance-scale"></span>
-                           <span class="text">Add to compare</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#" data-toggle="modal" data-target="#ModalquickView"
-                           class="quick-view">
-                           <span class="icon icon-visibility"></span>
-                        </a>
-                     </li>
-                  </ul>--}}
-               </div>
+                </span>
+
             </div>
-         </div>
-      </div>
-   </div>
+            <div class="product-action clearfix">
+                <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
+                <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
+                <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
+                <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
 @empty
 @endforelse
