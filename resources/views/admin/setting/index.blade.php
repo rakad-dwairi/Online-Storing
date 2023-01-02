@@ -1,12 +1,27 @@
-@extends('layout.admin.index')
-@section('title')
-   Site Settings
-@endsection
-@section('extra_css')
-@endsection
+@extends('layout.admin.app')
 @section('content')
 
-   <form id="setting_form"
+<div class="container-fluid page__heading-container">
+    <div class="page__heading">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
+                <li class="breadcrumb-item">UI Components</li>
+                <li class="breadcrumb-item active"
+                    aria-current="page">Forms</li>
+            </ol>
+        </nav>
+
+        <h1 class="m-0">Forms</h1>
+    </div>
+</div>
+
+<div class="container-fluid page__container">
+
+
+    <div class="card card-form" style="padding: 2%">
+        <div class="row no-gutters">
+            <form id="setting_form"
          action="{{ isset($setting) ? route('settings.update',$setting->setting_id) : route('settings.store') }}"
          method="post" enctype="multipart/form-data"
    >
@@ -101,67 +116,24 @@
          </div>
       </div>
    </form>
+        </div>
+    </div>
 
 
 
+<!-- <div class="card card-form">
+<div class="row no-gutters">
+<div class="col-lg-4 card-body">
+<p><strong class="headings-color">Basic Information</strong></p>
+<p class="text-muted">Edit your account details and settings.</p>
+</div>
+<div class="col-lg-8 card-form__body card-body">
 
-@endsection
-@section('extra_js')
-   @if (env('APP_AJAX'))
-      <script src="{{ asset('front-assets/js/checkOut.js') }}"></script>
-      <script type="text/javascript">
-          $(document).ready(function () {
-              $("#setting_form").submit(function (e) {
-                  e.preventDefault();
-                  var form_data = new FormData(this);
-                  $.ajaxSetup({
-                      headers: {
-                          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                      }
-                  });
-                  $.ajax({
-                      url: "{{ route('settings.update', $setting->setting_id) }}",
-                      method: "post",
-                      enctype: 'multipart/form-data',
-                      data: form_data,
-                      contentType: false,
-                      cache: false,
-                      processData: false,
-                      beforeSend: function () {
-                          $(".preview").show();
-                      },
-                      success: function ($results) {
-                          if ($results.success === true) {
-                              //show loading image ,reset forms ,clear gallery
-                              $(".preview").hide();
-                              location.reload();
-                              alert($results.message);
+</div>
+</div>
+</div> -->
+</div>
 
-                          }
-                      },
-                      error: function (request, status, error) {
-                          var json = $.parseJSON(request.responseText);
-                          if (json.success === false) {
-                              alert(json.message);
-                              $(".preview").hide();
-                              return
-                          }
-                          $(".preview").hide();
-                          $("#error_result").empty();
-                          $.each(json.errors, function (key, value) {
-                              $('.alert-danger').show();
-                              $('.alert-danger').append('<p>' + value + '</p>');
-                          });
-                          $('html, body').animate(
-                              {
-                                  scrollTop: $("#error_result").offset().top,
-                              },
-                              500,
-                          )
-                      }
-                  });
-              });
-          });
-      </script>
-   @endif
+</div>
+
 @endsection
