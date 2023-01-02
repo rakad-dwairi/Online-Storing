@@ -52,7 +52,6 @@
                                 @for( $i = 5 ; $i > round($product->averageRating) ; $i--)
                                 <a href="#"><i class="zmdi zmdi-star-half"></i></a>
                                 @endfor
-                                <span>( 27 Rating )</span>
                             </span>
                         </div>
                         <div class="fix mb-20">

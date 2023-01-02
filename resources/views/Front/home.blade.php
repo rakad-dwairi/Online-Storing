@@ -86,22 +86,30 @@
 <!-- BANNER-AREA START -->
 <div class="banner-area pt-80">
     <div class="container">
+        <div class="section-title text-center">
+            <h2 class="title-border">Categories</h2>
+        </div>
         <div class="row">
-            <div class="col-md-5">
+            @foreach ($categories as $category)
+            <div class="col-md-3 mt-2">
                 <!-- Single-banner start -->
                 <div class="single-banner banner-1 banner-4">
-                    <a class="banner-thumb" href="#"><img src="{{ asset('front-end-assets/img/banner/1.jpg') }}" alt="" /></a>
-                    <span class="pro-label new-label">new</span>
-                    <span class="price">$50.00</span>
+                    <a class="banner-thumb" href=""><img src="{{ asset('front-end-assets/img/banner/1.jpg') }}" alt="" /></a>
+                    {{-- <span class="pro-label new-label">new</span> --}}
+                    {{-- <span class="price">$50.00</span> --}}
                     <div class="banner-brief">
-                        <h2 class="banner-title"><a href="#">Product name</a></h2>
-                        <p class="mb-0">Furniture</p>
+                        {{-- <h2 class="banner-title"><a href="#">Category name</a></h2> --}}
+                        <p class="mb-0">{{ $category->category_name }}</p>
                     </div>
-                    <a href="#" class="button-one font-16px" data-text="Buy now">Buy now</a>
+                    {{-- <a href="#" class="button-one font-16px" data-text="Buy now">Buy now</a> --}}
                 </div>
                 <!-- Single-banner end -->
             </div>
-            <div class="col-md-7">
+            @endforeach
+            <div class="text-center">
+                <a href="/categories" class="button-one submit-btn-4" data-text="See more">See more</a>
+            </div>
+            {{-- <div class="col-md-7">
                 <!-- Single-banner start -->
                 <div class="single-banner banner-3">
                     <a class="banner-thumb" href="#"><img src="{{ asset('front-end-assets/img/banner/4.jpg') }}" alt="" /></a>
@@ -112,7 +120,7 @@
                     </div>
                 </div>
                 <!-- Single-banner end -->
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -135,6 +143,9 @@
 <!-- PRODUCT-AREA END -->
 <!-- DISCOUNT-PRODUCT START -->
 <div class="discount-product-area discount-2">
+    <div class="section-title text-center">
+        <h2 class="title-border">Discount</h2>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8">
@@ -282,20 +293,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -313,20 +313,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -343,20 +332,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -374,20 +352,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -405,20 +372,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -435,20 +391,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -466,20 +411,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -496,20 +430,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -531,20 +454,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -561,20 +473,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -592,20 +493,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -622,20 +512,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -653,20 +532,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -684,20 +552,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -714,20 +571,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -744,20 +590,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -779,20 +614,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -810,20 +634,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -841,20 +654,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -872,20 +674,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -903,20 +694,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -934,20 +714,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -964,20 +733,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -995,20 +753,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1030,20 +777,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1061,20 +797,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1091,20 +816,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1121,20 +835,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1151,20 +854,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1181,20 +873,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1212,20 +893,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1243,20 +913,9 @@
                                         <div class="fix">
                                             <h4 class="post-title"><a href="#">dummy Product name</a></h4>
                                         </div>
-                                        <div class="fix">
-                                            <span class="pro-rating">
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            </span>
-                                        </div>
-                                        <div class="product-action clearfix">
+                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                             <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1271,7 +930,7 @@
 </div>
 <!-- PURCHASE-ONLINE-AREA END -->
 <!-- BLGO-AREA START -->
-<div class="blog-area blog-2 pt-50">
+{{-- <div class="blog-area blog-2 pt-50">
     <div class="container">
         <!-- Section-title start -->
         <div class="row">
@@ -1360,8 +1019,96 @@
             <!-- Single-blog end -->
         </div>
     </div>
-</div>
+</div> --}}
 <!-- BLGO-AREA END -->
+<!-- feedback-area start-->
+<div class="my-5">
+    <div class="section-title text-center">
+        <h2 class="title-border">Feedback</h2>
+    </div>
+    <div class="container my-5 py-5 bg-white">
+        <div class="row">
+            <!-- Carousel wrapper -->
+            <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-mdb-ride="carousel">
+                <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <h5 class="mb-3">Maria Kate</h5>
+                        <p class="text-muted p-5">
+                        <i class="fas fa-quote-left pe-2"></i>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+                        nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
+                        fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
+                        doloremque.
+                        </p>
+                    </div>
+                    </div>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="far fa-star fa-sm"></i></li>
+                    </ul>
+                </div>
+                <div class="carousel-item">
+                    <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <h5 class="mb-3">John Doe</h5>
+                        <p class="text-muted p-5">
+                        <i class="fas fa-quote-left pe-2"></i>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+                        nesciunt sint eligendi reprehenderit reiciendis.
+                        </p>
+                    </div>
+                    </div>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="far fa-star fa-sm"></i></li>
+                    </ul>
+                </div>
+                <div class="carousel-item">
+                    <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <h5 class="mb-3">Anna Deynah</h5>
+                        <p class="text-muted p-5">
+                        <i class="fas fa-quote-left pe-2"></i>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+                        nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
+                        fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
+                        doloremque.
+                        </p>
+                    </div>
+                    </div>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="fas fa-star fa-sm"></i></li>
+                    <li><i class="far fa-star fa-sm"></i></li>
+                    </ul>
+                </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls"
+                data-mdb-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls"
+                data-mdb-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <!-- Carousel wrapper -->
+        </div>
+    </div>
+</div>
+<!-- feedback-area end-->
 <!-- BRAND-LOGO-AREA START -->
 <div class="brand-logo-area pt-80">
     <div class="container">
@@ -1390,4 +1137,8 @@
         </div>
     </div>
 </div>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
+></script>
 @endsection

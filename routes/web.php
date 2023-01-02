@@ -34,6 +34,22 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/about', function() {
         return view('Front.about.about');
     });
+    /*---------------Categories------------------*/
+    Route::get('/categories', function() {
+        return view('Front.categories.categories');
+    });
+    /*---------------favourite------------------*/
+    Route::get('/favourite', function() {
+        return view('Front.favourite.favourite');
+    });
+    /*---------------feedback------------------*/
+    Route::get('/feedback', function() {
+        return view('Front.feedback.feedback');
+    });
+    /*---------------single category------------------*/
+    Route::get('/category', function() {
+        return view('Front.categories.singleCategory');
+    });
     /*---------------CHECKOUT------------------*/
     Route::get('/inter-checkout', 'Front\checkOutController@interCheckOut')->name('front.inter.checkout');
     Route::get('/checkout', 'Front\checkOutController@index')->name('front.checkout');
