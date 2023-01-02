@@ -54,6 +54,11 @@ class productController extends AppBaseController
         $products = $this->product->with(['categories', 'colors'])->paginate($this->paginate);
         $index_categories = $this->category->all(['category_slug', 'category_name']);
         return view($this->productRepo->viewPrefix . 'index', compact('products', 'index_categories'));
+
+
+        // return view('admin.products.product-listing', compact('products', 'index_categories'));
+        // $products = DB::table('products')->get();
+       
     }
 
     /**
@@ -75,7 +80,7 @@ class productController extends AppBaseController
      */
     public function sort(Request $request)
     {
-        $this->validate($request, [
+        $this->validate($request,[
             'sort' => 'string|required',
             'sort_category' => 'string|nullable',
             'dcs' => 'string|required',
