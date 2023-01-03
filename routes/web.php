@@ -38,6 +38,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/categories', function() {
         return view('Front.categories.categories');
     });
+    /*---------------brands------------------*/
+    Route::get('/brands', function() {
+        return view('Front.brands.brands');
+    });
     /*---------------favourite------------------*/
     Route::get('/favourite', function() {
         return view('Front.favourite.favourite');

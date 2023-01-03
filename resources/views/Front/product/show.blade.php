@@ -78,6 +78,7 @@
                         <!-- color end -->
                         <!-- Size start -->
                         <div class="size-filter single-pro-size mb-35 clearfix">
+                            @if ($product->has_size)
                             <ul>
                                 <li><span class="color-title text-capitalize">size</span></li>
                                 <li><a href="#">M</a></li>
@@ -86,17 +87,15 @@
                                 <li><a href="#">SL</a></li>
                                 <li><a href="#">XL</a></li>
                             </ul>
+                            @endif
                         </div>
                         <!-- Size end -->
                         <div class="clearfix">
                             <div class="cart-plus-minus">
                                 <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
                             </div>
-                            <div class="product-action clearfix">
+                            <div class="product-action clearfix d-flex align-items-center justify-content-center">
                                 <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                <a href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                <a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                             </div>
                         </div>
                         <!-- Single-pro-slider Small-photo start -->
@@ -132,11 +131,9 @@
                     <div class="tab-content">
                         <div class="tab-pane" id="description">
                             <div class="pro-tab-info pro-description">
-                                <h3 class="tab-title title-border mb-30">dummy Product name</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                            </div>
+                                <h3 class="tab-title title-border mb-30">{{ $product->product_name }}</h3>
+                                <p>{{ $product->description }}.</p>
+                                </div>
                         </div>
                         <div class="tab-pane active" id="reviews">
                             <div class="pro-tab-info pro-reviews">
@@ -220,17 +217,23 @@
                         <div class="tab-pane" id="information">
                             <div class="pro-tab-info pro-information">
                                 <h3 class="tab-title title-border mb-30">Product information</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                            </div>
+                                <p>Made in : {{ $product->made_in }}.</p>
+                                <p>
+                                    @if ($product->has_size == 0)
+                                    Size : There is no size for this product.
+                                    @else
+                                    Size : S , M , L , SL , XL
+                                    @endif
+                                </p>
+                                <p>Weight : {{ $product->weight }}</p>
+                             </div>
                         </div>
                         <div class="tab-pane" id="tags">
                             <div class="pro-tab-info pro-information">
                                 <h3 class="tab-title title-border mb-30">tags</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
+                                @foreach ($product->tags as $tag)
+                                <p>{{ $tag->tag_name }}</p>
+                                @endforeach
                             </div>
                         </div>
                     </div>

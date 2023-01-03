@@ -34,8 +34,8 @@
                         <ul>
                             <li>
                                 <i class="zmdi zmdi-pin"></i>
-                                <span>28 Green Tower, Street Name,</span>
-                                <span>New York City, USA</span>
+                                <span>7th Circle -Ibn Mudaa ST.</span>
+                                <span>Amman, Jordan</span>
                             </li>
                             <li>
                                 <i class="zmdi zmdi-phone"></i>
