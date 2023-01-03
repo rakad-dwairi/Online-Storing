@@ -21,16 +21,19 @@ class frontComposer
     public function compose(View $view)
     {
         //if cache has those keys continue if not put em in cache
-        $brands = Cache::rememberForever('brands', function () {
-            return brand::select(['brand_id', 'brand_slug', 'brand_name', 'brand_image'])->get();
-        });
-        $categories = Cache::rememberForever('categories', function () {
-            return Category::whereIsRoot()->with('children')->get(['category_id', 'category_slug', 'category_name']);
-        });
-        $setting = Cache::rememberForever('setting', function () {
-            return Setting::first();
-        });
-
+        // $brands = Cache::rememberForever('brands', function () {
+        //     // return brand::select(['brand_id', 'brand_slug', 'brand_name', 'brand_image', 'brand_description'])->get();
+        //     // return brand::select(['brand_description']);
+        // });
+        $brands = brand::paginate(6);
+        // $categories = Cache::rememberForever('categories', function () {
+        //     return Category::whereIsRoot()->with('children')->get(['category_id', 'category_slug', 'category_name']);
+        // });
+        $categories = Category::paginate(6);
+        // $setting = Cache::rememberForever('setting', function () {
+        //     return Setting::first();
+        // });
+        $setting = Setting::all();
         $special_offers = Cache::rememberForever('special_offers', function () {
             return Product::where('is_off', 1)->orderBy('off_price','desc')->take(5)
                 ->get(['product_slug', 'product_name', 'status',

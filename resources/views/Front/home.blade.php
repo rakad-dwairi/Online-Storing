@@ -7,9 +7,11 @@
 <section class="slider-area slider-style-2">
     <div class="bend niceties preview-2">
         <div id="ensign-nivoslider" class="slides">
-            <img src="{{ asset('front-end-assets/img/slider/slider-2/1.jpg') }}" alt="" title="#slider-direction-1"  />
-            <img src="{{ asset('front-end-assets/img/slider/slider-2/2.jpg') }}" alt="" title="#slider-direction-1"  />
-            <img src="{{ asset('front-end-assets/img/slider/slider-2/3.jpg') }}" alt="" title="#slider-direction-1"  />
+            @foreach ($setting as $setting)
+            <img src="/front-end-assets/img/slider/{{ $setting->slider_image1 }}" alt="" title="#slider-direction-1"  />
+            <img src="/front-end-assets/img/slider/{{ $setting->slider_image2 }}" alt="" title="#slider-direction-2"  />
+            <img src="/front-end-assets/img/slider/{{ $setting->slider_image3 }}" alt="" title="#slider-direction-3"  />
+            @endforeach
         </div>
         <!-- direction 1 -->
         <div id="slider-direction-1" class="t-cn slider-direction">
@@ -90,24 +92,26 @@
             <h2 class="title-border">Categories</h2>
         </div>
         <div class="row">
-            @foreach ($categories as $category)
-            <div class="col-md-3 mt-2">
-                <!-- Single-banner start -->
-                <div class="single-banner banner-1 banner-4">
-                    <a class="banner-thumb" href=""><img src="{{ asset('front-end-assets/img/banner/1.jpg') }}" alt="" /></a>
-                    {{-- <span class="pro-label new-label">new</span> --}}
-                    {{-- <span class="price">$50.00</span> --}}
-                    <div class="banner-brief">
-                        {{-- <h2 class="banner-title"><a href="#">Category name</a></h2> --}}
-                        <p class="mb-0">{{ $category->category_name }}</p>
+            <div class="product-slider style-2 arrow-left-right">
+                @foreach ($categories as $category)
+                <div class="col-md-3 mt-2">
+                    <!-- Single-banner start -->
+                    <div class="single-banner banner-1 banner-4">
+                        <a class="banner-thumb" href="{{ route('front.showCategory',$category->category_slug) }}"><img src="{{ asset('front-end-assets/img/banner/1.jpg') }}" alt="" /></a>
+                        {{-- <span class="pro-label new-label">new</span> --}}
+                        {{-- <span class="price">$50.00</span> --}}
+                        <div class="banner-brief">
+                            {{-- <h2 class="banner-title"><a href="#">Category name</a></h2> --}}
+                            <p class="mb-0">{{ $category->category_name }}</p>
+                        </div>
+                        {{-- <a href="#" class="button-one font-16px" data-text="Buy now">Buy now</a> --}}
                     </div>
-                    {{-- <a href="#" class="button-one font-16px" data-text="Buy now">Buy now</a> --}}
+                    <!-- Single-banner end -->
                 </div>
-                <!-- Single-banner end -->
+                @endforeach
             </div>
-            @endforeach
-            <div class="text-center">
-                <a href="/categories" class="button-one submit-btn-4" data-text="See more">See more</a>
+            <div class="text-center mt-5">
+                <a href="" class="button-one submit-btn-4" data-text="See more">See more</a>
             </div>
             {{-- <div class="col-md-7">
                 <!-- Single-banner start -->

@@ -11,12 +11,13 @@
             <div class="col-md-12">
                 <div class="heading-banner">
                     <div class="heading-banner-title">
-                        <h2>Single Product</h2>
+                        <h2>{{ $product->product_name }}</h2>
                     </div>
                     <div class="breadcumbs pb-15">
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
-                            <li>Single Product</li>
+                            <li><a href="/products">Product</a></li>
+                            <li>{{ $product->product_name }}</li>
                         </ul>
                     </div>
                 </div>
