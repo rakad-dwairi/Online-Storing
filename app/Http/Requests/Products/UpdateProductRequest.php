@@ -24,7 +24,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
-
+//        dd($this->product);
         return [
             'brand_id' => 'required|numeric',
             'product_name' => 'required|string',

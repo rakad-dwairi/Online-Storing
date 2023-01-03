@@ -26,7 +26,30 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/show/{slug}', 'Front\homeController@show')->name('front.show')
         ->where(['slug' => '[-A-Za-z0-9]+']);
 
-
+    /*---------------Contact us------------------*/
+    Route::get('/contact', function() {
+        return view('Front.contact-us.contact-us');
+    });
+    /*---------------About us------------------*/
+    Route::get('/about', function() {
+        return view('Front.about.about');
+    });
+    /*---------------Categories------------------*/
+    Route::get('/categories', function() {
+        return view('Front.categories.categories');
+    });
+    /*---------------favourite------------------*/
+    Route::get('/favourite', function() {
+        return view('Front.favourite.favourite');
+    });
+    /*---------------feedback------------------*/
+    Route::get('/feedback', function() {
+        return view('Front.feedback.feedback');
+    });
+    /*---------------single category------------------*/
+    Route::get('/category', function() {
+        return view('Front.categories.singleCategory');
+    });
     /*---------------CHECKOUT------------------*/
     Route::get('/inter-checkout', 'Front\checkOutController@interCheckOut')->name('front.inter.checkout');
     Route::get('/checkout', 'Front\checkOutController@index')->name('front.checkout');
@@ -102,90 +125,10 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 
 });
 
-Route::get('/testAdmin', function () {
-    return view('admin.index2');
-});
-
-
-Route::get('/analytics', function () {
-    return view('admin.analytics');
-});
-
-
-Route::get('/ecommerce', function () {
-    return view('admin.ecommerce');
-});
-
-
-Route::get('/users', function () {
-    return view('admin.user.index');
-});
-
-
-Route::get('/addUsers', function () {
-    return view('admin.addUsers');
-});
-
-
-Route::get('/userProfile', function () {
-    return view('admin.userProfile');
-});
-
-
-Route::get('/product-listing', function () {
-    return view('admin.products.product-listing');
-});
-
-Route::get('/addProduct', function () {
-    return view('admin.addProduct');
-});
-
-
-Route::get('/category', function () {
-    return view('admin.category');
-});
-
-Route::get('/addCategory', function () {
-    return view('admin.category.addCategory');
-});
-
-
-Route::get('/brand', function () {
-    return view('admin.brand.brand');
-});
-
-Route::get('/giftCard', function () {
-    return view('admin.giftCard');
-});
-
-
-Route::get('/giftCardList', function () {
-    return view('admin.giftCardList');
-});
-
-Route::get('/setting', function () {
-    return view('admin.setting');
-});
-
-
-Route::get('/Roles', function () {
-    return view('admin.roles.Roles');
-});
-
-Route::get('/addRoles', function () {
-    return view('admin.addRoles');
-});
-
-
-
-
-
-
 /*---------------***************ADMIN ROUTES******************------------------*/
 Route::group(['prefix' => 'admin', 'middleware' => 'checkRole'], function () {
 
     /*---------------USERS------------------*/
-
     Route::resource('/user', 'Admin\userController');
     Route::get('/user-address/{id}', 'Admin\userController@editAddress')->name('admin.address.edit');
     Route::put('/user-address/{id}', 'Admin\userController@updateAddress')->name('admin.address.update');
@@ -200,13 +143,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole'], function () {
     Route::get('/dashboard', 'Admin\dashboardController@index')->name('admin.dashboard');
 
     /*---------------Products Routes------------------*/
-
-
-
-
     Route::resource('product', 'Admin\productController');
+
     Route::get('/product/create/second-step','Admin\productController@createSecondStep')->name('product.create2');
     Route::post('/product/create/second-step','Admin\productController@storeSecondStep')->name('product.store2');
+
     Route::post('product/sort', 'Admin\productController@sort')->name('product.index.sort');
     Route::get('product/index/trash', 'Admin\productController@withTrash')->name('product.index.trash');
     Route::get('product/index/restore/{id}', 'Admin\productController@restore')->name('product.restore');
@@ -254,9 +195,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole'], function () {
     Route::resource('/settings', 'Admin\settingController')->except([
         'create', 'show', 'edit', 'destroy'
     ]);
- 
+
 });
-
-
-
 

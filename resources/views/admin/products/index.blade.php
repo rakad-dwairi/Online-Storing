@@ -1,138 +1,178 @@
-@extends('layout.admin.app')
+@extends('layout.admin.index' )
 @section('title')
    @lang('models/products.plural') @lang('ext.list')
 @stop
+@section('extra_css')
+@stop
 @section('content')
 
+   <!-- IF $index_categories IS SET, MEANS THIS IS WITHOUT TRASH ROUTE THEN WE SHOW SORTING -->
+   @if(isset($index_categories))
+      <div class="pull-left">
+         <form id="sort_form" action="{{ route('product.index.sort') }}" method="post">
+            @csrf
+            <div class="btn-group">
+               <select name="sort_category" id="sort_category" class="form-control">
+                  <option value="" disabled="" selected="">ORDER BY @lang('models/categories.singular'):</option>
+                  <option value="{{ null }}">ALL @lang('models/categories.plural'):</option>
+                  @foreach($index_categories as $category)
+                     <option value="{{ $category->category_slug }}">{{ $category->category_name }}</option>
+                  @endforeach
+               </select>
+            </div>
 
-<div class="container-fluid page__heading-container">
-    <div class="page__heading d-flex align-items-center">
-        <div class="flex">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
-                    <li class="breadcrumb-item active">Products</li>
-                </ol>
-            </nav>
-            <h1 class="m-0">Products</h1>
-        </div>
-    </div>
-</div>
+            <div class="btn-group">
+               <select name="sort" id="sort" class="form-control">
+                  {{--            <option value="product_id" disabled="" selected="">SORT BY:</option>--}}
+                  <option value="product_id">Sort By Default</option>
+                  <option value="created_at">New Products</option>
+                  <option value="buy_price">Buy Price</option>
+                  <option value="sale_price">Sale Price</option>
+               </select>
+            </div>
 
-<div class="container-fluid page__container">
-    <div class="card">
+            <div class="btn-group">
+               <select name="dcs" class="form-control">
+                  <option value="desc">High to lower</option>
+                  <option value="asc">Low to higher</option>
+               </select>
+            </div>
 
-        <div class="table-responsive">
-            
-{{-- 
-            <div class="m-3">
-                <div class="row">
-                    <div class="col-md-4">
+            <div class="btn-group">
+               <label for="status">ONLY ACTIVE</label>
+               <input type="checkbox" name="status" id="status">
+            </div>
 
-                        <select name="#"
-                                class="form-control">
-                            <option value="-1">All</option>
-                            <option value="1">Hats</option>
-                            <option value="2">Coats</option>
-                            <option value="3">Jeans</option>
-                            <option value="4">T-Shirt</option>
-                            <option value="5">Other</option>
-                        </select>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="search-form search-form--light">
-                            <input type="text"
-                                   class="form-control search"
-                                   placeholder="Search">
-                            <button class="btn"
-                                    type="button"
-                                    role="button"><i class="material-icons">search</i></button>
+            <button class=" btn btn-success btn-sm" type="submit">
+               FILTER
+            </button>
 
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+         </form>
+         <a class="click_me btn btn-info2 btn-sm" href="{{ route('product.index.trash') }}">
+            <i class="ace-icon fa fa-trash-o "></i>
+            Trash
+         </a>
+      </div>
+      <div class="pull-right">
+         <form method="post" action="{{ route('admin.search') }}" id="form-search"
+               onsubmit="event.preventDefault()">
+            @csrf
+            <span><i>@lang('ext.search') : <b>@lang('models/products.fields.product_name')</b> @lang('ext.and') <b>@lang('models/products.fields.sku')</b></i></span>
+            <input type="hidden" value="products" name="search_kind">
+            <span class="input-icon">
+               <input type="text" placeholder="Search ..." class="nav-search-input"
+                      autocomplete="off" name="search"/>
+               <i class="ace-icon fa fa-search nav-search-icon"></i>
+               <button type="submit" class="btn btn-sm">
+                  <span class="fa fa-search"></span>
+               </button>
+            </span>
+         </form>
+      </div>
+   @endif
+   <div class="col-sm-12 col-lg-12 col-xs-12">
+      <table id="simple-table" class="table table-bordered table-hover table-responsive">
+         <thead>
+         <tr>
+            <th>#</th>
+            <th>@lang('models/products.fields.product_name')</th>
+            <th class="center">@lang('models/products.fields.sku')</th>
+            <th>@lang('models/products.fields.buy_price')</th>
+            <th>@lang('models/products.fields.sale_price')</th>
+            <th>@lang('models/products.fields.status')</th>
+            {{--         <th>Available Date</th>--}}
+            <th class="center">@lang('models/products.fields.is_off')?</th>
+            {{--         <th class="smaller-80">Price Of Off</th>--}}
+            <th class="smaller-80">@lang('models/categories.plural')</th>
+            <th class="smaller-80">@lang('models/colors.plural')</th>
+            {{--         <th class="smaller-80">Made In</th>--}}
+            <th class="smaller-80">@lang('models/products.fields.description')</th>
+            <th>@lang('models/products.fields.cover')</th>
+            <th class="smaller-80">@lang('models/products.fields.created_at')</th>
+            <th>@lang('crud.action')</th>
+         </tr>
+         </thead>
+         <tbody id="table_body" class="table_data">
+         @include('admin.products._data')
+         </tbody>
+      </table>
+   </div>
+   <div class="">
+      {{ $products->links() }}
+   </div>
 
-            <table class="table mb-0 thead-border-top-0 table-striped">
-                <thead>
-                    <tr>
+@endsection()
+@section('extra_js')
+   @can('product-delete')
+      <script>
+          $(document).ready(function () {
+              deleteAjax("/admin/product/", "delete_me", "product");
+              $(".restore_me").click(function (e) {
+                  e.preventDefault();
+                  var obj = $(this); // first store $(this) in obj
+                  var id = $(this).data("id");
+                  $.ajaxSetup({
+                      headers: {
+                          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                      }
+                  });
+                  $.ajax({
+                      url: id,
+                      method: "GET",
+                      dataType: "Json",
+                      // data: {"id": id},
+                      success: function ($results) {
+                          if ($results.success === true){
+                              alert($results.message);
+                              $(obj).closest("tr").remove(); //delete row
+                          }
+                      },
+                      error: function (xhr) {
+                          alert(xhr.responseText.message);
+                          console.log(xhr.responseText);
+                      }
+                  });
+              });
+          });
+      </script>
+   @endcan
+   <!-- TO SORT PRODUCTS -->
+   <script type="text/javascript">
+       $(document).ready(function () {
+           $("#sort_form").submit(function (e) {
+               e.preventDefault();
+               var form = $(this);
+               var form_data = new FormData(this);
+               $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                   }
+               });
+               $.ajax({
+                   url: "{{ route('product.index.sort') }}",
+                   method: "post",
+                   data: form_data,
+                   contentType: false,
+                   cache: false,
+                   processData: false,
+                   beforeSend: function () {
+                       $(".preview").show();
+                   },
 
-             
-
-                        <th style="width: 30px;"
-                        class="text-center">#ID</th>
-                        <th>Product</th>
-                        <th>Name</th>
-                        {{-- <th class="text-center">Stock</th> --}}
-                        <th class="">Category</th>
-                        <th class="text-right">Price</th>
-                        <th class="text-right">operatins</th>
-                        {{-- <th style="width: 100px; text-align: right;">
-                            <div class="dropdown pull-right">
-                                <a href="#"
-                                   data-toggle="dropdown"
-                                   class="dropdown-toggle">Bulk</a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="javascript:void(0)"
-                                       class="dropdown-item"><i class="material-icons icon-18pt mr-1">work</i> Set Price</a>
-                                    <a href="javascript:void(0)"
-                                       class="dropdown-item"><i class="material-icons icon-18pt mr-1">archive</i> Archive</a>
-                                </div>
-                            </div>
-                        </th> --}}
-                    </tr>
-                </thead>
-                <tbody class="list"
-                       id="products">
-
-                 @foreach ($products as $product )
-                     
-                
-
-                    <tr>
-                        
-                        <td>
-                            <div class="badge badge-soft-dark">{{ $product->product_id }}</div>
-                        </td>
-                        <td>
-                            <img src="{{ $product->cover}}"
-                                 alt="product"
-                                 style="width:35px"
-                                 class="rounded mr-2">
-                            <a href="#"></a>
-                        </td>
-                        {{-- <td style="width: 120px;"
-                            class="text-center">
-                            10 items</td> --}}
-                        <td >{{ $product->product_name }}</td>
-                        <td style="width:200px">
-
-                            <a href="#">{{ $product->product_slug }}</a>
-
-                        </td>
-
-                        <td class="text-right">{{ $product->buy_price }}</td>
-                        <td class="text-right"><a href="{{route('product.edit',$product->product_id)}}"
-                               class="btn btn-sm btn-primary">EDIT</td>
-                    </tr>
-
-                    @endforeach
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="card-body text-right">
-            {{ $products->links() }}
-            {{-- 15 <span class="text-muted">of 25</span> <a href="#"
-               class="text-muted-light"><i class="material-icons ml-1">arrow_forward</i></a> --}}
-        </div>
-
-    </div>
-</div>
-
-</div>
-
-
-
- @endsection   
+               })
+                   .done(function (data) {
+                       if (data.html == " ") {
+                           // $('.ajax-load').attr('src', '');
+                           $('#preview').hide();
+                           $('.table_body').html("No more records found");
+                           return;
+                       }
+                       $("#table_body").empty().append(data.html);
+                       $('.preview').hide();
+                   }).fail(function () {
+                   alert('error');
+               })
+           });
+       });
+   </script>
+@stop

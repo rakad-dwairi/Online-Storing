@@ -244,6 +244,5 @@
             </li>
          </ul>
       </div>
-   </div>
-   <!-- /.navbar-container -->
+   </div><!-- /.navbar-container -->
 </div>
