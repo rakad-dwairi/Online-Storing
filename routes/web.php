@@ -25,7 +25,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'Front\homeController@home');
     Route::get('/show/{slug}', 'Front\homeController@show')->name('front.show')
         ->where(['slug' => '[-A-Za-z0-9]+']);
-
+    Route::get('/showCategory/{slug}', 'Front\homeController@showCategory')->name('front.showCategory')
+        ->where(['slug' => '[-A-Za-z0-9]+']);
+    Route::get('/showBrand/{slug}', 'Front\homeController@showBrand')->name('front.showBrand')
+        ->where(['slug' => '[-A-Za-z0-9]+']);
     /*---------------Contact us------------------*/
     Route::get('/contact', function() {
         return view('Front.contact-us.contact-us');
@@ -37,6 +40,10 @@ Route::group(['middleware' => 'web'], function () {
     /*---------------Categories------------------*/
     Route::get('/categories', function() {
         return view('Front.categories.categories');
+    });
+    /*---------------brands------------------*/
+    Route::get('/brands', function() {
+        return view('Front.brands.brands');
     });
     /*---------------favourite------------------*/
     Route::get('/favourite', function() {

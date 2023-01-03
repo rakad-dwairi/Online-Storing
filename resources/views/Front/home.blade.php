@@ -7,9 +7,11 @@
 <section class="slider-area slider-style-2">
     <div class="bend niceties preview-2">
         <div id="ensign-nivoslider" class="slides">
-            <img src="{{ asset('front-end-assets/img/slider/slider-2/1.jpg') }}" alt="" title="#slider-direction-1"  />
-            <img src="{{ asset('front-end-assets/img/slider/slider-2/2.jpg') }}" alt="" title="#slider-direction-1"  />
-            <img src="{{ asset('front-end-assets/img/slider/slider-2/3.jpg') }}" alt="" title="#slider-direction-1"  />
+            @foreach ($setting as $setting)
+            <img src="/front-end-assets/img/slider/{{ $setting->slider_image1 }}" alt="" title="#slider-direction-1"  />
+            <img src="/front-end-assets/img/slider/{{ $setting->slider_image2 }}" alt="" title="#slider-direction-2"  />
+            <img src="/front-end-assets/img/slider/{{ $setting->slider_image3 }}" alt="" title="#slider-direction-3"  />
+            @endforeach
         </div>
         <!-- direction 1 -->
         <div id="slider-direction-1" class="t-cn slider-direction">
@@ -90,24 +92,26 @@
             <h2 class="title-border">Categories</h2>
         </div>
         <div class="row">
-            @foreach ($categories as $category)
-            <div class="col-md-3 mt-2">
-                <!-- Single-banner start -->
-                <div class="single-banner banner-1 banner-4">
-                    <a class="banner-thumb" href=""><img src="{{ asset('front-end-assets/img/banner/1.jpg') }}" alt="" /></a>
-                    {{-- <span class="pro-label new-label">new</span> --}}
-                    {{-- <span class="price">$50.00</span> --}}
-                    <div class="banner-brief">
-                        {{-- <h2 class="banner-title"><a href="#">Category name</a></h2> --}}
-                        <p class="mb-0">{{ $category->category_name }}</p>
+            <div class="product-slider style-2 arrow-left-right">
+                @foreach ($categories as $category)
+                <div class="col-md-3 mt-2">
+                    <!-- Single-banner start -->
+                    <div class="single-banner banner-1 banner-4">
+                        <a class="banner-thumb" href="{{ route('front.showCategory',$category->category_slug) }}"><img src="{{ asset('front-end-assets/img/banner/1.jpg') }}" alt="" /></a>
+                        {{-- <span class="pro-label new-label">new</span> --}}
+                        {{-- <span class="price">$50.00</span> --}}
+                        <div class="banner-brief">
+                            {{-- <h2 class="banner-title"><a href="#">Category name</a></h2> --}}
+                            <p class="mb-0">{{ $category->category_name }}</p>
+                        </div>
+                        {{-- <a href="#" class="button-one font-16px" data-text="Buy now">Buy now</a> --}}
                     </div>
-                    {{-- <a href="#" class="button-one font-16px" data-text="Buy now">Buy now</a> --}}
+                    <!-- Single-banner end -->
                 </div>
-                <!-- Single-banner end -->
+                @endforeach
             </div>
-            @endforeach
-            <div class="text-center">
-                <a href="/categories" class="button-one submit-btn-4" data-text="See more">See more</a>
+            <div class="text-center mt-5">
+                <a href="" class="button-one submit-btn-4" data-text="See more">See more</a>
             </div>
             {{-- <div class="col-md-7">
                 <!-- Single-banner start -->
@@ -246,7 +250,11 @@
                             <h4 class="comming-pro-price">$ 200.00</h4>
                         </div>
                         <div class="count-down">
-                            <div data-countdown="2022/10/08"></div>
+                            <div data-countdown="2023/1/08"></div>
+                            <script>
+                                let data = new Date();
+                                console.log(data);
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -929,98 +937,6 @@
     </div>
 </div>
 <!-- PURCHASE-ONLINE-AREA END -->
-<!-- BLGO-AREA START -->
-{{-- <div class="blog-area blog-2 pt-50">
-    <div class="container">
-        <!-- Section-title start -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title text-center">
-                    <h2 class="title-border">From The Blog</h2>
-                </div>
-            </div>
-        </div>
-        <!-- Section-title end -->
-        <div class="row">
-            <!-- Single-blog start -->
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog mt-30">
-                    <div class="blog-photo">
-                        <a href="#"><img src="{{ asset('front-end-assets/img/blog/3.jpg') }}" alt="" /></a>
-                        <div class="like-share text-center fix">
-                            <a href="#"><i class="zmdi zmdi-favorite"></i><span>89 Like</span></a>
-                            <a href="#"><i class="zmdi zmdi-comments"></i><span>59 Comments</span></a>
-                            <a href="#"><i class="zmdi zmdi-share"></i><span>29 Share</span></a>
-                        </div>
-                    </div>
-                    <div class="blog-info">
-                        <div class="post-meta fix">
-                            <div class="post-date floatleft"><span class="text-dark-red">30</span></div>
-                            <div class="post-year floatleft">
-                                <p class="text-uppercase text-dark-red mb-0">June, 2021</p>
-                                <h4 class="post-title"><a href="#" tabindex="0">Farniture drawing 2021</a></h4>
-                            </div>
-                        </div>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered If you are going to use a passage  Lorem Ipsum, you alteration in some form.</p>
-                        <a href="#" class="button-2 text-dark-red">Read more...</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Single-blog end -->
-            <!-- Single-blog start -->
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog mt-30">
-                    <div class="blog-photo">
-                        <a href="#"><img src="{{ asset('front-end-assets/img/blog/4.jpg') }}" alt="" /></a>
-                        <div class="like-share text-center fix">
-                            <a href="#"><i class="zmdi zmdi-favorite"></i><span>89 Like</span></a>
-                            <a href="#"><i class="zmdi zmdi-comments"></i><span>59 Comments</span></a>
-                            <a href="#"><i class="zmdi zmdi-share"></i><span>29 Share</span></a>
-                        </div>
-                    </div>
-                    <div class="blog-info">
-                        <div class="post-meta fix">
-                            <div class="post-date floatleft"><span class="text-dark-red">30</span></div>
-                            <div class="post-year floatleft">
-                                <p class="text-uppercase text-dark-red mb-0">June, 2021</p>
-                                <h4 class="post-title"><a href="#" tabindex="0">Farniture drawing 2021</a></h4>
-                            </div>
-                        </div>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered If you are going to use a passage  Lorem Ipsum, you alteration in some form.</p>
-                        <a href="#" class="button-2 text-dark-red">Read more...</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Single-blog end -->
-            <!-- Single-blog start -->
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog mt-30">
-                    <div class="blog-photo">
-                        <a href="#"><img src="{{ asset('front-end-assets/img/blog/5.jpg') }}" alt="" /></a>
-                        <div class="like-share text-center fix">
-                            <a href="#"><i class="zmdi zmdi-favorite"></i><span>89 Like</span></a>
-                            <a href="#"><i class="zmdi zmdi-comments"></i><span>59 Comments</span></a>
-                            <a href="#"><i class="zmdi zmdi-share"></i><span>29 Share</span></a>
-                        </div>
-                    </div>
-                    <div class="blog-info">
-                        <div class="post-meta fix">
-                            <div class="post-date floatleft"><span class="text-dark-red">30</span></div>
-                            <div class="post-year floatleft">
-                                <p class="text-uppercase text-dark-red mb-0">June, 2021</p>
-                                <h4 class="post-title"><a href="#" tabindex="0">Farniture drawing 2021</a></h4>
-                            </div>
-                        </div>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered If you are going to use a passage  Lorem Ipsum, you alteration in some form.</p>
-                        <a href="#" class="button-2 text-dark-red">Read more...</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Single-blog end -->
-        </div>
-    </div>
-</div> --}}
-<!-- BLGO-AREA END -->
 <!-- feedback-area start-->
 <div class="my-5">
     <div class="section-title text-center">

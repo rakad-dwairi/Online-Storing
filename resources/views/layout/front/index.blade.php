@@ -55,7 +55,9 @@
 						<div class="row">
 							<div class="col-md-4 offset-md-4 col-7">
 								<div class="logo text-md-center">
-									<a href="{{ route('home') }}"><img src="{{ asset('front-end-assets/img/logo/logo.png') }}" alt="" /></a>
+									@foreach ($setting as $setting)
+                                    <a href="{{ route('home') }}"><img src="front-end-assets/img/logo/{{ $setting->site_logo }}" alt="" /></a>
+                                    @endforeach
 								</div>
 							</div>
 							<div class="col-md-4 col-5">
@@ -66,42 +68,6 @@
 												<i class="zmdi zmdi-favorite-outline"></i>
 												<span>3</span>
 											</a>
-											{{-- <div class="mini-cart-brief text-left">
-												<div class="cart-items">
-													<p class="mb-0">You have <span>03 items</span> in your shopping bag</p>
-												</div>
-												<div class="all-cart-product clearfix">
-													<div class="single-cart clearfix">
-														<div class="cart-photo">
-															<a href="#"><img src="{{ asset('front-end-assets/img/cart/1.jpg') }}" alt="" /></a>
-														</div>
-														<div class="cart-info">
-															<h5><a href="#">dummy product name</a></h5>
-															<p class="mb-0">Price : $ 100.00</p>
-															<p class="mb-0">Qty : 02 </p>
-															<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
-														</div>
-													</div>
-													<div class="single-cart clearfix">
-														<div class="cart-photo">
-															<a href="#"><img src="{{ asset('front-end-assets/img/cart/2.jpg') }}" alt="" /></a>
-														</div>
-														<div class="cart-info">
-															<h5><a href="#">dummy product name</a></h5>
-															<p class="mb-0">Price : $ 300.00</p>
-															<p class="mb-0">Qty : 01 </p>
-															<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
-														</div>
-													</div>
-												</div>
-												<div class="cart-totals">
-													<h5 class="mb-0">Total <span class="floatright">$500.00</span></h5>
-												</div>
-												<div class="cart-bottom  clearfix">
-													<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
-													<a href="checkout.html" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
-												</div>
-											</div> --}}
 										</li>
 									</ul>
 								</div>
@@ -120,6 +86,7 @@
 						<ul>
 							<li><a href="{{ route('home') }}">home</a>
 							</li>
+							<li><a href="/about">about us</a></li>
 							<li><a href="{{ route('front.productsList') }}">products</a>
 							</li>
 							<li><a href="/categories">Categories</a>
@@ -131,7 +98,7 @@
 													<li class="menu-title">Categories</li>
 													@foreach ($categories as $category)
                                                     <li>
-                                                        <a href="#">{{ $category->category_name }}</a>
+                                                        <a href="{{ route('front.showCategory',$category->category_slug) }}">{{ $category->category_name }}</a>
                                                     </li>
                                                     @endforeach
 												</ul>
@@ -146,7 +113,7 @@
 									</div>
 								</div>
 							</li>
-							<li><a href="/about">about us</a></li>
+							<li><a href="/brands">Brands</a></li>
 							<li><a href="/feedback">feedback</a></li>
 							<li><a href="/contact">contact us</a></li>
 						</ul>
@@ -209,7 +176,7 @@
 
 			<!-- BRAND-LOGO-AREA END -->
 			<!-- FOOTER START -->
-			<footer>
+            <footer>
 				<!-- Footer-area start -->
 				<div class="footer-area footer-2">
 					<div class="container">
@@ -218,9 +185,9 @@
 								<div class="single-footer">
 									<h3 class="footer-title  title-border">Contact Us</h3>
 									<ul class="footer-contact">
-										<li><span>Address :</span>7th Circle -Ibn Mudaa ST.<br>Amman, Jordan</li>
-										<li><span>Cell-Phone :</span>012345 - 123456789</li>
-										<li><span>Email :</span>your-email@gmail.com</li>
+										<li><span>Address :</span>{{ $setting->site_address }}</li>
+										<li><span>Cell-Phone :</span>{{ $setting->site_phone }}</li>
+										<li><span>Email :</span>{{ $setting->site_email }}</li>
 									</ul>
 								</div>
 							</div>
@@ -299,7 +266,7 @@
                             <div class="modal-product">
                                 <div class="product-images">
                                     <div class="main-image images">
-                                        <img id="qv-img" alt="#" src=""/>
+                                        <img id="qv-img" alt="#" src="/front-end-assets/images/">
                                     </div>
                                 </div><!-- .product-images -->
 
