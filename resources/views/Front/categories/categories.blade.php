@@ -4,7 +4,6 @@
 @endsection
 
 @section('content')
-
 			<!-- HEADING-BANNER START -->
 			<div class="heading-banner-area overlay-bg">
 				<div class="container">
@@ -63,17 +62,22 @@
                                             <div class="col-lg-4 col-md-6 category">
                                                 <div class="single-product">
                                                     <div class="product-img">
-                                                        <a href="single-product.html"><img src="{{ asset('front-end-assets/img/product/1.jpg') }}" alt="" /></a>
+                                                        <a href="{{ route('front.showCategory',$category->category_slug) }}"><img src="{{ asset('front-end-assets/img/product/1.jpg') }}" alt="" /></a>
                                                     </div>
                                                     <div class="product-info clearfix text-center">
                                                         <div class="fix">
-                                                            <h4 class="post-title"><a href="">{{ $category->category_name }}</a></h4>
+                                                            <h4 class="post-title"><a href="{{ route('front.showCategory',$category->category_slug) }}">{{ $category->category_name }}</a></h4>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- Single-product end -->
                                             @endforeach
+                                            <div class="bg-white p-2 d-flex align-items-center justify-content-center">
+                                                <ul class="pagination">
+                                                    {{ $categories->links() }}
+                                                </ul>
+                                            </div>
 										</div>
 									</div>
 									<div class="tab-pane active" id="list-view">
@@ -83,22 +87,27 @@
 											<div class="col-lg-12 category">
 												<div class="single-product clearfix">
 													<div class="product-img">
-														<a href="single-product.html"><img src="{{ asset('front-end-assets/img/product/6.jpg') }}" alt="" /></a>
+														<a href="{{ route('front.showCategory',$category->category_slug) }}"><img src="{{ asset('front-end-assets/img/product/6.jpg') }}" alt="" /></a>
 													</div>
 													<div class="product-info">
 														<div class="fix">
-															<h4 class="post-title floatleft"><a href="#">{{ $category->category_name }}</a></h4>
+															<h4 class="post-title floatleft"><a href="{{ route('front.showCategory',$category->category_slug) }}">{{ $category->category_name }}</a></h4>
 														</div>
 														<div class="fix mb-20">
 														</div>
 														<div class="product-description">
-															<p>There are many variations of passages of Lorem Ipsum available, but the majority have be suffered alteration in some form, by injected humour, or randomised words which donot look even slightly believable. If you are going to use a passage of Lorem Ipsum, you neede be sure there isn't anythin  going to use a passage embarrassing.</p>
+															{{-- <p>{{ $category-> }}.</p> --}}
 														</div>
 													</div>
 												</div>
 											</div>
 											<!-- Single-product end -->
                                             @endforeach
+                                            <div class="bg-white p-2 d-flex align-items-center justify-content-center">
+                                                <ul class="pagination">
+                                                    {{ $categories->links() }}
+                                                </ul>
+                                            </div>
 										</div>
 									</div>
 								</div>

@@ -63,17 +63,22 @@
                                             <div class="col-lg-4 col-md-6 category">
                                                 <div class="single-product">
                                                     <div class="product-img">
-                                                        <a href="single-product.html"><img src="{{ $brand->src }}" alt="" /></a>
+                                                        <a href="{{ route('front.showBrand',$brand->brand_slug) }}"><img src="{{ $brand->src }}" alt="" /></a>
                                                     </div>
                                                     <div class="product-info clearfix text-center">
                                                         <div class="fix">
-                                                            <h4 class="post-title"><a href="">{{ $brand->brand_name }}</a></h4>
+                                                            <h4 class="post-title"><a href="{{ route('front.showBrand',$brand->brand_slug) }}">{{ $brand->brand_name }}</a></h4>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- Single-product end -->
                                             @endforeach
+                                            <div class="bg-white p-2 d-flex align-items-center justify-content-center">
+                                                <ul class="pagination">
+                                                    {{ $brands->links() }}
+                                                </ul>
+                                            </div>
 										</div>
 									</div>
 									<div class="tab-pane active" id="list-view">
@@ -83,22 +88,27 @@
 											<div class="col-lg-12 category">
 												<div class="single-product clearfix">
 													<div class="product-img">
-														<a href="single-product.html"><img src="{{ $brand->src }}" alt="" /></a>
+														<a href="{{ route('front.showBrand',$brand->brand_slug) }}"><img src="{{ $brand->src }}" alt="" /></a>
 													</div>
 													<div class="product-info">
 														<div class="fix">
-															<h4 class="post-title floatleft"><a href="#">{{ $brand->brand_name }}</a></h4>
+															<h4 class="post-title floatleft"><a href="{{ route('front.showBrand',$brand->brand_slug) }}">{{ $brand->brand_name }}</a></h4>
 														</div>
 														<div class="fix mb-20">
 														</div>
 														<div class="product-description">
-															<p>There are many variations of passages of Lorem Ipsum available, but the majority have be suffered alteration in some form, by injected humour, or randomised words which donot look even slightly believable. If you are going to use a passage of Lorem Ipsum, you neede be sure there isn't anythin  going to use a passage embarrassing.</p>
+															<p>{{ $brand->brand_description }}.</p>
 														</div>
 													</div>
 												</div>
 											</div>
 											<!-- Single-product end -->
                                             @endforeach
+                                            <div class="bg-white p-2 d-flex align-items-center justify-content-center">
+                                                <ul class="pagination">
+                                                    {{ $brands->links() }}
+                                                </ul>
+                                            </div>
 										</div>
 									</div>
 								</div>

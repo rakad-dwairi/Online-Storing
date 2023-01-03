@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 use PhpParser\Comment;
@@ -16,7 +17,7 @@ use PhpParser\Comment;
 class homeController extends Controller
 {
     private $product;
-
+    private $setting;
     public function __construct()
     {
         $this->middleware('web');
@@ -32,7 +33,7 @@ class homeController extends Controller
     public function home(Request $request)
     {
         $products = $this->product->select(['product_id', 'product_slug', 'product_name', 'status',
-                'data_available', 'is_off', 'off_price', 'cover', 'sale_price', 'created_at']
+                'data_available', 'is_off', 'off_price', 'cover', 'sale_price', 'created_at', 'description']
         )->paginate(4);
         if ($request->ajax()) {
             $view = view('Front._data', compact('products'))->render();
@@ -45,7 +46,11 @@ class homeController extends Controller
         //see how many times home page loaded
         Cache::increment('homePage');
 
-        return view('Front.home', compact('products'));
+        $settings = Setting::all();
+
+
+
+        return view('Front.home', compact('products','settings'));
     }
 
     /**
@@ -78,9 +83,28 @@ class homeController extends Controller
 
         //check if auth user has commented for this products
         $has_commented = in_array(auth()->id(),$product->comments()->pluck('commenter_id','commenter_id')->toArray());
-
         return view('front.product.show', compact('product', 'related_products','has_commented'));
     }
+
+
+    public function showCategory(Request $request, $slug)
+    {
+        $this->validate($request, ['slug' => 'string']);
+        $category = Category::all()->where('category_slug', "$slug")->first();
+        return view('Front.categories.singleCategory', compact('category'));
+    }
+
+
+    public function showBrand(Request $request, $slug)
+    {
+        $this->validate($request, ['slug' => 'string']);
+        $brand = brand::all()->where('brand_slug', "$slug")->first();
+        return view('Front.brands.singleBrand', compact('brand'));
+    }
+
+
+
+
 
     /**
      * get all products with filters

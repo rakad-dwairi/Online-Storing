@@ -39,7 +39,10 @@ class Setting extends Model
         'site_address',
         'site_phone',
         'site_email',
-        'site_fax'
+        'site_fax',
+        'slider_image1',
+        'slider_image2',
+        'slider_image3',
     ];
 
     /**
@@ -56,7 +59,10 @@ class Setting extends Model
         'site_address' => 'string',
         'site_phone' => 'string',
         'site_email' => 'string',
-        'site_fax' => 'string'
+        'site_fax' => 'string',
+        'slider_image1' => 'string',
+        'slider_image2' => 'string',
+        'slider_image3' => 'string',
     ];
 
     /**
@@ -72,7 +78,10 @@ class Setting extends Model
         'site_address' => 'required',
         'site_phone' => 'required',
         'site_email' => 'required',
-        'site_fax' => 'required'
+        'site_fax' => 'required',
+        'slider_image1' => 'required',
+        'slider_image2' => 'required',
+        'slider_image3' => 'required'
     ];
 
     /**
@@ -93,5 +102,5 @@ class Setting extends Model
     {
         return asset(env('IMAGE_PATH') . $this->attributes['site_icon']);
     }
-    
+
 }

@@ -55,7 +55,9 @@
 						<div class="row">
 							<div class="col-md-4 offset-md-4 col-7">
 								<div class="logo text-md-center">
-									<a href="{{ route('home') }}"><img src="{{ asset('front-end-assets/img/logo/logo.png') }}" alt="" /></a>
+									@foreach ($setting as $setting)
+                                    <a href="{{ route('home') }}"><img src="front-end-assets/img/logo/{{ $setting->site_logo }}" alt="" /></a>
+                                    @endforeach
 								</div>
 							</div>
 							<div class="col-md-4 col-5">
@@ -96,7 +98,7 @@
 													<li class="menu-title">Categories</li>
 													@foreach ($categories as $category)
                                                     <li>
-                                                        <a href="#">{{ $category->category_name }}</a>
+                                                        <a href="{{ route('front.showCategory',$category->category_slug) }}">{{ $category->category_name }}</a>
                                                     </li>
                                                     @endforeach
 												</ul>
@@ -174,7 +176,7 @@
 
 			<!-- BRAND-LOGO-AREA END -->
 			<!-- FOOTER START -->
-			<footer>
+            <footer>
 				<!-- Footer-area start -->
 				<div class="footer-area footer-2">
 					<div class="container">
@@ -183,9 +185,9 @@
 								<div class="single-footer">
 									<h3 class="footer-title  title-border">Contact Us</h3>
 									<ul class="footer-contact">
-										<li><span>Address :</span>7th Circle -Ibn Mudaa ST.<br>Amman, Jordan</li>
-										<li><span>Cell-Phone :</span>012345 - 123456789</li>
-										<li><span>Email :</span>your-email@gmail.com</li>
+										<li><span>Address :</span>{{ $setting->site_address }}</li>
+										<li><span>Cell-Phone :</span>{{ $setting->site_phone }}</li>
+										<li><span>Email :</span>{{ $setting->site_email }}</li>
 									</ul>
 								</div>
 							</div>
@@ -264,7 +266,7 @@
                             <div class="modal-product">
                                 <div class="product-images">
                                     <div class="main-image images">
-                                        <img id="qv-img" alt="#" src=""/>
+                                        <img id="qv-img" alt="#" src="/front-end-assets/images/">
                                     </div>
                                 </div><!-- .product-images -->
 
