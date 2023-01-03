@@ -1,12 +1,32 @@
-@extends('layout.admin.index' )
-@section('title')
-   Create new Product
-@stop
-@section('extra_css')
-@stop
+@extends('layout.admin.app')
 @section('content')
 
-   <form method="post" action="{{ route('product.store') }}" id="product_form"
+
+
+<div class="container-fluid page__heading-container">
+    <div class="page__heading">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
+                <li class="breadcrumb-item">UI Components</li>
+                <li class="breadcrumb-item active"
+                    aria-current="page">Add Products</li>
+            </ol>
+        </nav>
+
+        <h1 class="m-0">Add Products</h1>
+    </div>
+</div>
+
+<div class="container-fluid page__container">
+
+
+
+    <div class="card card-form">
+        <div class="row no-gutters">
+         {{-- ========================add Products=============================== --}}
+
+         <form method="post" action="{{ route('product.store') }}" id="product_form"
          enctype="multipart/form-data">
       <div class="row">
          @csrf
@@ -75,7 +95,7 @@
                </div>
             </div>
          </div>
-         <div class="col-xs-12 form-group col-md-12 col-lg-12">
+         <div class="col-xs-12 form-group col-md-12 col-lg-10" style="margin: 1%" >
             <label for="description">Description</label>
             <div class="clearfix">
                   <textarea id="description" rows="6" class="form-control"
@@ -125,7 +145,7 @@
 
          </div>
 
-         <div class="center col-xs-6 col-sm-6 col-lg-6 col-md-6">
+         <div class="center col-xs-6 col-sm-6 col-lg-5 col-md-6">
 
             <div class="form-group {{ $errors->has('cover') ? 'has-error' : '' }}">
                <label class="bolder bigger-110 " for="brand_image">Cover</label>
@@ -137,7 +157,7 @@
             <img id="show_image" src="" alt="" width="200" height="100" class="img-responsive img-thumbnail">
          </div>
          <hr>
-         <div class="form-group">
+         <div class="form-group" style="margin: 3%">
             <div class="btn-group btn-group-justified">
                <div class="btn-group">
                   <input type="submit" class="btn btn-info " value="SAVE">
@@ -150,170 +170,27 @@
 
       </div>
    </form>
-   <input type="hidden" value="{{ route('product.create2') }}" id="redirect-route">
-@endsection()
-@section('extra_js')
-   <script type="text/javascript">
-       // show items
-       function showMe() {
-           jQuery(".available0").toggle();
-       }
-
-       function showDiscount() {
-           jQuery(".div-discount").toggle();
-       }
-
-       // <!-- add site map of the page -->
-       jQuery(document).one('load', function (e) {
-           jQuery("#site_map").append("<i class='ace-icon fa '></i><a href='{{ route('product.create') }}' class='click_me'>Create Product</a>");
-           // e.isImmediatePropagationStopped()
-       });
-   </script>
-
-   <!-- load cover image -->
-   <script type="text/javascript">
-       function readURL(input) {
-           if (input.files && input.files[0]) {
-               var reader = new FileReader();
-
-               reader.onload = function (e) {
-                   $('#show_image').attr('src', e.target.result);
-               }
-
-               reader.readAsDataURL(input.files[0]);
-           }
-       }
-
-       $("#cover").change(function () {
-           readURL(this);
-       });
-   </script>
-
-   <!--FRONT VALIDATION -->
-   <script type="text/javascript">
-       jQuery(document).ready(function () {
-           jQuery(function ($) {
-               $("#product_form").validate({
-                   errorElement: 'div',
-                   errorClass: 'help-block',
-                   focusInvalid: false,
-                   ignore: "",
-                   rules: {
-                       product_name: "required",
-                       product_slug: "required",
-                       buy_price: {required: true},
-                       sale_price: {required: true},
-                       quantity: {required: true},
-                       made_in: "required",
-                       description: "required",
-                       colors: "required",
-                       brand_id: "required",
-                       categories: "required",
-                   },
-                   messages: {},
-
-
-                   highlight: function (e) {
-                       $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-                   },
-
-                   success: function (e) {
-                       $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-                       $(e).remove();
-                   },
-
-                   errorPlacement: function (error, element) {
-                       if (element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-                           var controls = element.closest('div[class*="col-"]');
-                           if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                           else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                       } else if (element.is('.select2')) {
-                           error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                       } else if (element.is('.chosen-select')) {
-                           error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-                       } else error.insertAfter(element.parent());
-                   },
-
-                   submitHandler: function (form) {
-                   },
-                   invalidHandler: function (form) {
-                   }
-               });
-
-               $('#modal-wizard-container').ace_wizard();
-               $('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
-
-               $(document).one('ajaxloadstart.page', function (e) {
-                   //in ajax mode, remove remaining elements before leaving page
-                   $('[class*=select2]').remove();
-               });
-           })
-       })
-   </script>
-
-   {{--send date with AJAX--}}
-   @if(env('APP_AJAX'))
-      <script type="text/javascript">
-          $(document).ready(function () {
-              $("#product_form").submit(function (e) {
-                  e.preventDefault();
-                  var form = $(this);
-                  var form_data = new FormData(this);
-                  // check if the input is valid
-                  // if (!form.valid()) return false;
-                  $.ajaxSetup({
-                      headers: {
-                          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                      }
-                  });
-                  $.ajax({
-                      url: "{{ route('product.store') }}",
-                      method: "post",
-                      enctype: 'multipart/form-data',
-                      data: form_data,
-                      contentType: false,
-                      cache: false,
-                      processData: false,
-                      beforeSend: function () {
-                          $(".preview").toggle();
-                      },
-                      success: function (data) {
-                          if (data.success === true) {
-                              //show loading image ,reset forms ,clear gallery
-                              $(".preview").hide();
-                              $("#product_form")[0].reset();
-                              $(".gallery").empty();
-                              alert(data.message);
-                              window.location.replace($('#redirect-route').val());
-                          }
-                      },
-                      error: function (request, status, error) {
-                          json = $.parseJSON(request.responseText);
-                          if (json.success === false) {
-                              alert(json.message);
-                              $(".preview").hide();
-                              return;
-                          }
-                          $(".preview").hide();
-                          $("#error_result").empty();
-                          $.each(json.errors, function (key, value) {
-                              $('.alert-danger').show().append('<p>' + value + '</p>');
-                          });
-                          $('html, body').animate(
-                              {
-                                  scrollTop: $("#error_result").offset().top,
-                              },
-                              500,
-                          )
-                          // $("#result").html('');
-                      }
-                  });
-              });
-          });
-      </script>
-   @endif
-   <!-- show selected images -->
+         {{-- ======================== End add Products=============================== --}}
+        
+        </div>
+    </div>
 
 
 
-@stop
+    <!-- <div class="card card-form">
+<div class="row no-gutters">
+<div class="col-lg-4 card-body">
+<p><strong class="headings-color">Basic Information</strong></p>
+<p class="text-muted">Edit your account details and settings.</p>
+</div>
+<div class="col-lg-8 card-form__body card-body">
+
+</div>
+</div>
+</div> -->
+</div>
+
+</div>
+
+
+@endsection   

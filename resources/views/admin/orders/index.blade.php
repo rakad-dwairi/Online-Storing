@@ -1,95 +1,93 @@
-@extends('layout.admin.index' )
+@extends('layout.admin.app')
 @section('title')
-   Order List
-@stop
-@section('extra_css')
+   @lang('models/products.plural') @lang('ext.list')
 @stop
 @section('content')
 
 
-   <form method="post" action="{{ route('admin.search') }}" id="form-search"
-   onsubmit="event.preventDefault()">
-      @csrf
-      <input type="hidden" value="orders" name="search_kind">
-      <span class="input-icon">
-         <input type="number" placeholder="Search ..." class="nav-search-input"
-                autocomplete="off" name="search"/>
-         <i class="ace-icon fa fa-search nav-search-icon"></i>
-         <button type="submit" class="btn btn-sm">
-            <span class="fa fa-search"></span>
-         </button>
-      </span>
-      <span><i>search for <b>TRACK CODE</b></i></span>
-   </form>
-   <div class="">
-      <table id="simple-table" class="table table-bordered table-hover table-responsive">
-         <thead>
-         <tr class="info">
-            <th class="center">
-               ID
-            </th>
-            <th class="center">Order Status</th>
-            <th class="center">Track Code</th>
-            <th class="center">Payments</th>
-            <th class="center">Address</th>
-            <th class="center">Customer User</th>
-            <th class="center">Client Name</th>
-            <th class="center">Client Phone, Email</th>
-            {{--         <th class="center">Employee Name</th>--}}
-            <th class="center">Total Price</th>
-            <th class="center">Gift Card</th>
-            <th class="center">Date</th>
-            <th class="center">Operations</th>
-         </tr>
-         </thead>
-         <tbody class="table_data">
-         @include('admin.orders._data')
+<div class="container-fluid page__heading-container">
+    <div class="page__heading d-flex align-items-center">
+        <div class="flex">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
+                    <li class="breadcrumb-item active">Orders</li>
+                </ol>
+            </nav>
+            <h1 class="m-0">Orders</h1>
+        </div>
+    </div>
+</div>
 
-         </tbody>
-      </table>
-   </div>
+<div class="container-fluid page__container">
+    <div class="card">
+
+        <div class="table-responsive">
+            
+{{-- 
+            <div class="m-3">
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <select name="#"
+                                class="form-control">
+                            <option value="-1">All</option>
+                            <option value="1">Hats</option>
+                            <option value="2">Coats</option>
+                            <option value="3">Jeans</option>
+                            <option value="4">T-Shirt</option>
+                            <option value="5">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="search-form search-form--light">
+                            <input type="text"
+                                   class="form-control search"
+                                   placeholder="Search">
+                            <button class="btn"
+                                    type="button"
+                                    role="button"><i class="material-icons">search</i></button>
+
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
+            <table class="table mb-0 thead-border-top-0 table-striped">
+                <thead><tr class="info">
+                    <th class="center">
+                        ID
+                     </th>
+                     <th class="center">Order Status</th>
+                     <th class="center">Track Code</th>
+                     <th class="center">Payments</th>
+                     <th class="center">Address</th>
+                     <th class="center">Customer User</th>
+                     <th class="center">Client Name</th>
+                     <th class="center">Client Phone, Email</th>
+                     {{--         <th class="center">Employee Name</th>--}}
+                     <th class="center">Total Price</th>
+                     <th class="center">Gift Card</th>
+                     <th class="center">Date</th>
+                     <th class="center">Operations</th>
+                </thead>
+                <tbody class="list"
+                       id="products">
+                       @include('admin.orders._data')
+            </table>
+        </div>
+
+        <div class="card-body text-right">
+            {{ $orders->links() }}
+            {{-- 15 <span class="text-muted">of 25</span> <a href="#"
+               class="text-muted-light"><i class="material-icons ml-1">arrow_forward</i></a> --}}
+        </div>
+
+    </div>
+</div>
+
+</div>
 
 
-   {{ $orders->links() }}
 
-@endsection
-@section('extra_js')
-   <script>
-       $(document).ready(function () {
-          @can('order-delete')
-           <!-- DELETE -->
-           deleteAjax("/admin/orders/", "delete_me", "Order");
-          @endcan
-           <!-- SENT -->
-           $(".sent_me").click(function (e) {
-               e.preventDefault();
-               if (!confirm('DO YOU WANT TO CHANGE STATUS?')) {
-                   return false
-               }
-               var obj = $(this); // first store $(this) in obj
-               var status = $(this).data("status");
-               var href = $(this).attr("href");
-               $.ajaxSetup({
-                   headers: {
-                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                   }
-               });
-               $.ajax({
-                   url: href,
-                   method: "get",
-                   success: function ($results) {
-                       alert($results.message);
-                       $(obj).closest("a").remove(); //delete icon
-                       // var x = $(obj).parents('tr').load(location.href + obj); //delete icon
-
-                       console.log($results);
-                   },
-                   error: function (xhr) {
-                       alert(xhr.responseText.message);
-                       console.log(xhr.responseText);
-                   }
-               });
-           });
-       });
-   </script>
-@stop
+ @endsection   
