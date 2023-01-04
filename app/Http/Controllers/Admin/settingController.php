@@ -109,7 +109,7 @@ class settingController extends Controller
             }
         }
         $name = $img->getClientOriginalName();
-        $image_name = 'setting_' . "$name";
+        $image_name = $name;
         $img->move(env('IMAGE_PATH'), $image_name);
         return $image_name;
 
