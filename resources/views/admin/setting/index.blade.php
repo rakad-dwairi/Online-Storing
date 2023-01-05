@@ -103,6 +103,50 @@
             </div>
          </div>
       </div>
+      <div class="row mt-5">
+         <div class="col-sm-5 col-xs-12">
+            <div class="form-group" id="_slider_image1">
+               @if ($setting->slider_image1)
+                  <img src="{{ asset('front-end-assets/img/slider/slider-2') }}/{{ $setting->slider_image1  }}" alt="slider_image1" class="img-thumbnail" width="100" height="200">
+               @endif
+            </div>
+            <div class="form-group {{ $errors->has('slider_image1') ? 'has-error' : '' }}">
+               <label class="bolder bigger-110" for="slider_image1">slider_image1</label>
+
+               <input type="file" name="slider_image1" id="slider_image1" class="form-control">
+               <span class="text-danger">{{ $errors->first('slider_image1') }}</span>
+            </div>
+         </div>
+         <div class="col-sm-2"></div>
+         <div class="col-sm-5 col-xs-12">
+            <div class="form-group" id="_slider_image2">
+               @if ($setting->slider_image2)
+                  <img src="{{ asset('front-end-assets/img/slider/slider-2') }}/{{ $setting->slider_image2  }}" alt="slider_image2" class="img-thumbnail" width="100" height="200">
+               @endif
+            </div>
+            <div class="form-group {{ $errors->has('slider_image2') ? 'has-error' : '' }}">
+               <label class="bolder bigger-110" for="slider_image2">slider_image2</label>
+
+               <input type="file" name="slider_image2" id="slider_image2" class="form-control">
+               <span class="text-danger">{{ $errors->first('slider_image2') }}</span>
+            </div>
+         </div>
+      </div>
+      <div class="row mt-5">
+         <div class="col-sm-5 col-xs-12">
+            <div class="form-group" id="_slider_image3">
+               @if ($setting->slider_image3)
+                  <img src="{{ asset('front-end-assets/img/slider/slider-2') }}/{{ $setting->slider_image3  }}" alt="slider_image3" class="img-thumbnail" width="100" height="200">
+               @endif
+            </div>
+            <div class="form-group {{ $errors->has('slider_image3') ? 'has-error' : '' }}">
+               <label class="bolder bigger-110" for="slider_image3">slider_image3</label>
+
+               <input type="file" name="slider_image3" id="slider_image3" class="form-control">
+               <span class="text-danger">{{ $errors->first('slider_image3') }}</span>
+            </div>
+         </div>
+      </div>
 
 
       <div class="form-group">

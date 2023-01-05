@@ -8,9 +8,9 @@
     <div class="bend niceties preview-2">
         <div id="ensign-nivoslider" class="slides">
             @foreach ($setting as $setting)
-            <img src="/front-end-assets/img/slider/{{ $setting->slider_image1 }}" alt="" title="#slider-direction-1"  />
-            <img src="/front-end-assets/img/slider/{{ $setting->slider_image2 }}" alt="" title="#slider-direction-2"  />
-            <img src="/front-end-assets/img/slider/{{ $setting->slider_image3 }}" alt="" title="#slider-direction-3"  />
+            <img src="/front-end-assets/img/slider/slider-2/{{ $setting->slider_image1 }}" alt="" title="#slider-direction-1"  />
+            <img src="/front-end-assets/img/slider/slider-2/{{ $setting->slider_image2 }}" alt="" title="#slider-direction-2"  />
+            <img src="/front-end-assets/img/slider/slider-2/{{ $setting->slider_image3 }}" alt="" title="#slider-direction-3"  />
             @endforeach
         </div>
         <!-- direction 1 -->

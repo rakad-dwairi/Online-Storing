@@ -56,7 +56,7 @@
 							<div class="col-md-4 offset-md-4 col-7">
 								<div class="logo text-md-center">
 									@foreach ($setting as $setting)
-                                    <a href="{{ route('home') }}"><img src="front-end-assets/img/logo/{{ $setting->site_logo }}" alt="" /></a>
+                                    <a href="{{ route('home') }}"><img src="{{ asset('front-end-assets/img/logo') }}/{{ $setting->site_logo }}" alt="" /></a>
                                     @endforeach
 								</div>
 							</div>
@@ -266,7 +266,7 @@
                             <div class="modal-product">
                                 <div class="product-images">
                                     <div class="main-image images">
-                                        <img id="qv-img" alt="#" src="/front-end-assets/images/">
+                                        <img id="qv-img" alt="#" src="">
                                     </div>
                                 </div><!-- .product-images -->
 
@@ -347,20 +347,34 @@
 		<script src="{{ asset('front-end-assets/js/main.min.js') }}"></script>
 
         <script>
-             function onCahnge(name, image, description) {
-                console.log(name);
-                console.log(image);
-                const model = document.getElementById('productModal');
-                const modelName = model.querySelector(".product-info h1");
-                console.log(modelName);
-                const modelDescription = model.querySelector(".quick-desc");
-                console.log(modelDescription.textContent);
-                modelDescription.textContent = description;
-                modelName.textContent = name;
-                const qvImage = document.getElementById("qv-img");
-                qvImage.src = image;
-             }
-        </script>
+            function onCahnge(name, image, description) {
+               console.log(name);
+               console.log(image);
+               const model = document.getElementById('productModal');
+               const modelName = model.querySelector(".product-info h1");
+               console.log(modelName);
+               const modelDescription = model.querySelector(".quick-desc");
+               console.log(modelDescription.textContent);
+               modelDescription.textContent = description;
+               modelName.textContent = name;
+               const qvImage = document.getElementById("qv-img");
+            //    console.log(lastFive);
+               function subStr(string, character, position) {
+                if(position=='b')
+                return string.substring(string.indexOf(character) + 1);
+                else if(position=='a')
+                return string.substring(0, string.indexOf(character));
+                else
+                return string;
+            }
+            $path = subStr(image, 's','b');
+            qvImage.src = "/images/" + $path;
+            console.log(subStr('Tutorix & Tutorialspoint','&','a'));
+            console.log("</br>");
+            console.log(subStr(image, 's','b'));
+            }
+
+       </script>
 
 	</body>
 </html>

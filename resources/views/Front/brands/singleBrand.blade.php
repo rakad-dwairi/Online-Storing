@@ -2,7 +2,6 @@
 @section('title')
 {{ $brand->brand_name }}
 @endsection
-
 @section('content')
 
 			<!-- HEADING-BANNER START -->

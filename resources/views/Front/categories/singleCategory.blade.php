@@ -1,13 +1,7 @@
 @extends('layout.front.index')
 @section('title')
-@foreach ($category->products as $product)
-{{ $product->product_name }}
-@php
-    $category_name = $product->product_name;
-@endphp
-@endforeach
+{{ $category->category_name }}
 @endsection
-
 @section('content')
 			<!-- HEADING-BANNER START -->
 			<div class="heading-banner-area overlay-bg">
@@ -16,13 +10,13 @@
 						<div class="col-md-12">
 							<div class="heading-banner">
 								<div class="heading-banner-title">
-									<h2>{{ $category_name }}</h2>
+									<h2>{{ $category->category_name }}</h2>
 								</div>
 								<div class="breadcumbs pb-15">
 									<ul>
 										<li><a href="{{ route('home') }}">Home</a></li>
 										<li><a href="/categories">Categories</a></li>
-										<li>{{ $category_name }}</li>
+										<li>{{ $category->category_name }}</li>
 									</ul>
 								</div>
 							</div>

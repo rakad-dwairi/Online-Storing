@@ -99,7 +99,8 @@ class homeController extends Controller
     {
         $this->validate($request, ['slug' => 'string']);
         $brand = brand::all()->where('brand_slug', "$slug")->first();
-        return view('Front.brands.singleBrand', compact('brand'));
+        $setting = Setting::all();
+        return view('Front.brands.singleBrand', compact('brand','setting'));
     }
 
 
