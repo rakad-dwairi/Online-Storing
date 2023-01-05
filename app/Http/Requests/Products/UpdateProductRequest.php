@@ -33,6 +33,7 @@ class UpdateProductRequest extends FormRequest
             ]  ,
             'buy_price' => 'required|numeric',
             'sale_price' => 'required|numeric',
+            'product_ranking' => 'required|numeric',
             'quantity' => 'required|numeric',
             'made_in' => 'required|string',
             'description' => 'required|string',

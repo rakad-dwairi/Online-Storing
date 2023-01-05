@@ -26,13 +26,13 @@
             </a>
          @endif
       </td>
-      {{--            <td class="center">--}}
+                 {{-- <td class="center">--}}
       {{--               @if($product->status == 0)--}}
       {{--                  <b>{{ $product->data_available }}</b>--}}
       {{--               @else--}}
       {{--                  <i class="glyphicon green glyphicon-ok bigger-130"></i>--}}
       {{--            @endif--}}
-      {{--            <td>--}}
+      {{--            <td> --}}
       <td class="center">
          @if($product->is_off == 1)
             <span class='label label-warning smaller-80'>HAS-OFF</span>

@@ -392,6 +392,34 @@
                               @can('role-list')
 
 
+                                       {{-- ======================================================== --}}
+                                       <li class="sidebar-menu-item ">
+                                        <a class="sidebar-menu-button"
+                                           data-toggle="collapse"
+                                           href="#feedback">
+                                            <span class="sidebar-menu-text">Feedback</span>
+                                            <span class="ml-auto d-flex align-items-center">     
+                                                <span class="sidebar-menu-toggle-icon"></span>
+                                            </span>
+                                        </a>
+                                        <ul class="sidebar-submenu collapse "
+                                            id="feedback">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button" href="{{ route('feedback.show') }}" data-title="feedback">
+                                                    <span class="sidebar-menu-text"><i class="menu-icon fa fa-caret-right"></i>Not Aproved</span>
+                                                </a>
+                                            </li>
+                                       
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button"
+                                                   href="{{ route('feedback.aproved') }}" data-title="feedback">
+                                                    <span class="sidebar-menu-text">Aproved</span>
+                                                </a>
+                                            </li>
+                                           
+                                        </ul>
+                                     </li>
+                                      {{-- ======================================================== --}}
                               <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button"
                                     href="{{ route('settings.index') }}">
@@ -402,6 +430,8 @@
                               @endcan
 
 
+
+             
 
                               
 

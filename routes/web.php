@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\Admin\productController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/test', function () {
@@ -49,10 +50,20 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/favourite', function() {
         return view('Front.favourite.favourite');
     });
+
+
+
+
     /*---------------feedback------------------*/
-    Route::get('/feedback', function() {
-        return view('Front.feedback.feedback');
-    });
+    // Route::get('/feedback', function() {
+    //     return view('Front.feedback.feedback');
+    // });
+
+      /*---------------feedback------------------*/
+      Route::get('/feedback' , [FeedbackController::class,'index']);
+      Route::post('/feedback','FeedbackController@store')->name('feedback');
+    
+
     /*---------------single category------------------*/
     Route::get('/category', function() {
         return view('Front.categories.singleCategory');
@@ -105,6 +116,7 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 
+
 /*------------------------------FRONT AUTH ROUTES------------------*/
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 
@@ -121,6 +133,9 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
     Route::post('comments', 'Admin\myCommentController@store')->name('comment.store');
     Route::match(['put', 'post'], 'comments/{comment}', '\Laravelista\Comments\CommentController@update');
 //    Route::post('comments/{comment}', '\Laravelista\Comments\CommentController@reply');
+
+
+  
 
     /*---------------FAVORITES------------------*/
     Route::post('/favorite', 'Front\accountController@favoritePost')->name('favorite');
@@ -160,6 +175,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole'], function () {
     Route::get('product/index/restore/{id}', 'Admin\productController@restore')->name('product.restore');
     Route::get('product/tags/{tag}', 'Admin\productController@productTags')->name('products.tags');
 
+    // Route::put('/product/{id}', [productController::class, 'productUpdate'])->name('products.update');
+    // Route::put('product/{id}', 'Admin\productController@productUpdate')->name('products.update');
+
+
+
+
+    Route::delete('/product/index/{id}', 'Admin\productController@destroy')->name('product.destroy');
+
     /*---------------ATTRIBUTES ROUTES------------------*/
     Route::resource('attribute', 'Admin\attributeController')->except(['index', 'show']);
     Route::delete('attribute/value/{id}', 'Admin\attributeController@deleteValue')->name('attribute.deleteValue');
@@ -194,6 +217,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole'], function () {
     Route::delete('/comments/{id}', 'Admin\myCommentController@destroy');
 //    Route::delete('/comments/{comment}', '\Laravelista\Comments\CommentController@destroy');
 
+    /*---------------****Feedback****------------------*/
+    Route::get('/feedback', 'FeedbackController@showinAdminSide')->name('feedback.show');
+    Route::get('/aprovedFeedback', 'FeedbackController@aproved')->name('feedback.aproved');
+
+    Route::delete('/feedback/{id}', 'FeedbackController@destroy')->name('feedback.destroy');
+    Route::get('/feedback/{id}', 'FeedbackController@updateStatus')->name('feedback.updateStatus');
+    
     /*---------------PAYMENTS------------------*/
     Route::resource('/payment', 'Admin\PaymentController')->except(['edit', 'update', 'create', 'store']);
     Route::get('/failed-payments', 'Admin\PaymentController@failed')->name('payment.failed');

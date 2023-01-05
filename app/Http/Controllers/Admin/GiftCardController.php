@@ -90,6 +90,7 @@ class GiftCardController extends AppBaseController
      */
     public function update(GiftCardUpdateRequest $request, $id)
     {
+        
         $gift = $this->giftCardRepo->updateGiftCard($request, $id);
 
         return $this->giftCardRepo->passViewAfterUpdated($gift, 'giftCards', 'giftCard.index');

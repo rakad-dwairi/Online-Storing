@@ -4,6 +4,8 @@
 @endsection
 @section('content')
 <!-- SLIDER-AREA START  -->
+
+
 <section class="slider-area slider-style-2">
     <div class="bend niceties preview-2">
         <div id="ensign-nivoslider" class="slides">
@@ -947,35 +949,29 @@
             <!-- Carousel wrapper -->
             <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-mdb-ride="carousel">
                 <div class="carousel-inner">
+                    
+                  
                 <div class="carousel-item active">
                     <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
-                        <h5 class="mb-3">Maria Kate</h5>
+                        <h5 class="mb-3">{{  $firstRow->name }}</h5>
                         <p class="text-muted p-5">
                         <i class="fas fa-quote-left pe-2"></i>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
-                        nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
-                        fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
-                        doloremque.
+                        {{  $firstRow->feedback }}
                         </p>
                     </div>
                     </div>
-                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
-                    <li><i class="fas fa-star fa-sm"></i></li>
-                    <li><i class="fas fa-star fa-sm"></i></li>
-                    <li><i class="fas fa-star fa-sm"></i></li>
-                    <li><i class="fas fa-star fa-sm"></i></li>
-                    <li><i class="far fa-star fa-sm"></i></li>
-                    </ul>
                 </div>
-                <div class="carousel-item">
+
+                @foreach ( $feedbacks as $feedback )
+        
+                <div class="carousel-item ">
                     <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
-                        <h5 class="mb-3">John Doe</h5>
+                        <h5 class="mb-3"> {{ $feedback->name }}</h5>
                         <p class="text-muted p-5">
                         <i class="fas fa-quote-left pe-2"></i>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
-                        nesciunt sint eligendi reprehenderit reiciendis.
+                        {{ $feedback->feedback }}
                         </p>
                     </div>
                     </div>
@@ -987,27 +983,14 @@
                     <li><i class="far fa-star fa-sm"></i></li>
                     </ul>
                 </div>
-                <div class="carousel-item">
-                    <div class="row d-flex justify-content-center">
-                    <div class="col-lg-8">
-                        <h5 class="mb-3">Anna Deynah</h5>
-                        <p class="text-muted p-5">
-                        <i class="fas fa-quote-left pe-2"></i>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
-                        nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
-                        fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
-                        doloremque.
-                        </p>
-                    </div>
-                    </div>
-                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
-                    <li><i class="fas fa-star fa-sm"></i></li>
-                    <li><i class="fas fa-star fa-sm"></i></li>
-                    <li><i class="fas fa-star fa-sm"></i></li>
-                    <li><i class="fas fa-star fa-sm"></i></li>
-                    <li><i class="far fa-star fa-sm"></i></li>
-                    </ul>
-                </div>
+                @endforeach
+
+          
+
+          
+
+
+
                 </div>
                 <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls"
                 data-mdb-slide="prev">

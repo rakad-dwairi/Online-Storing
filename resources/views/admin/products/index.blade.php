@@ -113,7 +113,17 @@
 
                         <td class="text-right">{{ $product->buy_price }}</td>
                         <td class="text-right"><a href="{{route('product.edit',$product->product_id)}}"
-                               class="btn btn-sm btn-primary">EDIT</td>
+                               class="btn btn-sm btn-primary">EDIT
+                            </td>
+                        <td>   
+                             
+                        <form class="" method="post" action="{{ route('product.destroy', $product->product_id) }}">
+                            @csrf
+                            @method('DELETE')
+                        <input onclick="return confirm('Are you sure you want to delete this Message?')" type="submit" class="btn btn-danger btn-sm mx-1 float-end PY-3 px-3" value="Delete" />
+                        </form></td>    
+
+
                     </tr>
 
                     @endforeach

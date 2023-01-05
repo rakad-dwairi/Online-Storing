@@ -59,6 +59,7 @@ class Product extends Model
         'brand_id',
         'product_name',
         'product_slug',
+        'product_ranking',
         'sku',
         'status',
         'data_available',
@@ -71,7 +72,8 @@ class Product extends Model
         'made_in',
         'weight',
         'description',
-        'cover'
+        'cover',
+        'category_id'
     ];
 
     /**
@@ -84,6 +86,7 @@ class Product extends Model
         'brand_id' => 'integer',
         'product_name' => 'string',
         'product_slug' => 'string',
+        'product_ranking' => 'string',
         'sku' => 'string',
         'status' => 'boolean',
         'data_available' => 'date',
@@ -108,6 +111,7 @@ class Product extends Model
         'brand_id' => 'required',
         'product_name' => 'required',
         'product_slug' => 'required',
+        'product_ranking' => 'required',
         'sku' => 'required',
         'status' => 'required',
         'is_off' => 'required',
@@ -117,7 +121,7 @@ class Product extends Model
         'sale_price' => 'required',
         'quantity' => 'required',
         'description' => 'required',
-        'cover' => 'required'
+        'cover' => 'required',
     ];
 
     /**
@@ -126,6 +130,10 @@ class Product extends Model
     public function brands()
     {
         return $this->belongsTo(brand::class, 'brand_id');
+    }
+
+    public function productRanking(){
+        return $this->belongsTo(productRanking::class);
     }
 
     /**

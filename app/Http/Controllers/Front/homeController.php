@@ -9,9 +9,15 @@ use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+<<<<<<< Updated upstream
 use App\Models\Setting;
+=======
+use App\Http\Requests\feedback;
+use App\Models\Feedback as ModelsFeedback;
+>>>>>>> Stashed changes
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use PhpParser\Comment;
 
 class homeController extends Controller
@@ -46,11 +52,21 @@ class homeController extends Controller
         //see how many times home page loaded
         Cache::increment('homePage');
 
+<<<<<<< Updated upstream
         $settings = Setting::all();
 
 
 
         return view('Front.home', compact('products','settings'));
+=======
+           // Show feedback in home page 
+
+
+        $feedbacks=ModelsFeedback::all()->where('status' , '==' , '1');
+        // dd($feedbacks);
+        $firstRow = ModelsFeedback::all()->where('status' , '==' , '1')->last();
+        return view('Front.home', compact('products' ,'feedbacks', 'firstRow'));
+>>>>>>> Stashed changes
     }
 
     /**
@@ -289,6 +305,8 @@ class homeController extends Controller
         return response()->json(['success' => 'compare product has removed'])->withCookie(Cookie::forget("$name"));
 
     }
+
+ 
 
     /**
      * validate requests for isting products

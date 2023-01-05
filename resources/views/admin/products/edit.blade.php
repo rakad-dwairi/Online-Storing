@@ -1,6 +1,17 @@
+
 @extends('layout.admin.app')
 @section('content')
 
+@section('extra_css')
+   <!-- the script in this page wont work with pjax so i hava to reload it  -->
+   @if (env('APP_AJAX'))
+      <script type="text/javascript">
+          document.on('pjax:complete', function () {
+              pjax.reload();
+          })
+      </script>
+   @endif
+@stop
 
 
 <div class="container-fluid page__heading-container">
@@ -26,12 +37,14 @@
         <div class="row no-gutters" style="padding: 2%">
          {{-- ========================edit Products=============================== --}}
 
-         <form method="post" action="{{ route('product.update',$product->product_id) }}" enctype="multipart/form-data"
+   <form method="post" action="{{ route('product.update', $product->product_id) }}" enctype="multipart/form-data"\admin\product\7\edit
             id="Uproduct_form">
+         @method('PUT')
          @csrf
          @if( ! env("APP_AJAX") )
             @method("PUT")
          @endif
+         
          <div class="col-xs-12">
             <div class="form-group col-xs-3">
                <label class="control-label no-padding-right" for="product_name"> Product Name </label>
@@ -52,6 +65,20 @@
                   @endforeach
                </select>
             </div>
+
+                 {{-- ===================== product ranking ======================= --}}
+                 <div class="form-group col-xs-3">
+                  <label class=" control-label no-padding-right" for="brand_id">Choose your product ranking</label>
+                  <div class="clearfix">
+                     <select name="product_ranking" id="product_ranking" class="form-control">
+                        <option value="{{ old('product_ranking',$product->product_ranking) }}" disabled selected>Choose your product ranking</option>
+                        @foreach($product_ranking as $ranking)
+                           <option {{ old('product_ranking') == $ranking->id ? 'selected' : '' }} value="{{ $ranking->id }}">{{ $ranking->product_ranking }}</option>
+                        @endforeach
+                     </select>
+                  </div>
+               </div>
+                 {{-- =====================End product ranking ======================= --}}
             <div class="form-group  col-xs-3">
                <label class=" control-label no-padding-right" for="product_slug"> Product Slug </label>
                <input placeholder="Product Slug" id="product_slug" name="product_slug"
@@ -71,9 +98,21 @@
                       id="buy_price" class="form-control" min="0" type="number">
             </div>
             <div class="col-xs-3">
+               <label class=" control-label no-padding-right" for="buy_price"> off_price </label>
+               <input placeholder="Buy Price" name="off_price" value="{{ old('off_price',$product->off_price) }}"
+                      id="off_price" class="form-control" min="0" type="number">
+            </div>
+            <div class="col-xs-3">
                <label for="quantity">Quantity</label>
                <input placeholder="Quantity" type="number" value="{{ old("quantity",$product->quantity) }}" min="0"
                       name="quantity" class="form-control" id="quantity">
+            </div>
+            <div class="col-xs-3">
+               <label class=" control-label no-padding-right" for="quantity">sku</label>
+               <div class="clearfix">
+                  <input placeholder="sku" type="number" value="{{ old("quantity") }}" min="0" name="sku"
+                         class="form-control" id="sku">
+               </div>
             </div>
             <div class="col-xs-3">
                <label for="weight">Weight</label>
@@ -86,55 +125,8 @@
             <textarea id="description" rows="6" class="form-control"
                       name="description">{{ old('description',$product->description) }}</textarea>
          </div>
-         <div class="form-group col-xs-6">
-            <div class="col-sm-4">
+   
 
-               <label><h4>Available ? </h4>
-                  <input type="checkbox" name="status" id="status" onclick=''
-                         class="ace ace-switch ace-switch-5" {{ $product->status == 1 ? 'checked': '' }} >
-                  <span class="lbl"></span>
-               </label>
-
-               <label><h4>Discount ?</h4>
-                  <input type="checkbox" name="is_off" id="is_off" onclick=""
-                         class="ace ace-switch ace-switch-5" {{ $product->is_off == 1 ? 'checked' :'' }}>
-                  <span class="lbl"></span>
-               </label>
-            </div>
-            <div class="col-sm-8">
-               <div class="available0">
-                  <label for="data_available"><b>Available Date</b></label>
-                  <input id="data_available" name="data_available" class="form-control"
-                         value="{{ old('data_available',$product->data_available) }}" type="date"/>
-               </div>
-               <div class="div-discount">
-                  <label for="off_price"><b>Amount of Discount:</b></label>
-                  <input id="off_price" name="off_price" class="form-control" min="0"
-                         value="{{ old('off_price',$product->off_price) }}" type="number">
-               </div>
-            </div>
-         </div>
-         <div class="form-group col-xs-6">
-            <div class="form-group">
-               <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Tag input</label>
-               <div class="col-sm-9">
-                  <div class="inline">
-                     <input type="text" name="tags" id="form-field-tags" placeholder="Enter tags ..."
-                            value="<?php foreach ($product->tags as $tag) {
-                                echo $tag->tag_name . ',';
-                            } ?>"/>
-                     <span class="help-button" title="Type your tag and press enter">?</span>
-                  </div>
-                  <label>
-                     <h4>Has Size ? </h4>
-                     <input type="checkbox" name="has_size" id="has_size" class="ace ace-switch ace-switch-5"
-                             {{ $product->has_size == 1 ? 'checked' :'' }}>
-                     <span class="lbl"></span>
-                  </label>
-               </div>
-            </div>
-
-         </div>
          <div class="form-group col-xs-12">
             <div class="col-xs-6">
                <!-- file input -->
@@ -157,8 +149,8 @@
                               <a href="{{ $photo->src }}" target="_blank">
                                  <div class="column-thumbnail">
                                     <div class="fileuploader-item-image fileuploader-no-thumbnail">
-                                       <div style="background-color: #1B6AAA " class="fileuploader-item-icon">
-                                          <img src="{{ $photo->thumbnail }}" alt="{{ $photo->photo_title }}">
+                                       <div style="background-color: #1B6AAA ;width:50px ; " class="fileuploader-item-icon" >
+                                          <img style="width:80px ;  " src="{{ $photo->thumbnail }}" alt="{{ $photo->photo_title }}">
                                        </div>
                                     </div>
                                     <span class="fileuploader-action-popup">
@@ -191,30 +183,19 @@
          </div>
 
          <div class="col-xs-12">
-            <div class="col-xs-6">
-               <div class="widget-box">
-                  <div class="widget-header">
-                     <h4 class="widget-title">Categories</h4>
-                     <div class="widget-toolbar">
-                        <a href="#" data-action="collapse">
-                           <i class="ace-icon fa fa-chevron-up"></i>
-                        </a>
-                     </div>
-                  </div>
-                  <div class="widget-body">
-                     <div class="widget-main">
-                        <select multiple="multiple" size="10" name="categories[]" id="duallist0">
-                           @foreach($categories as $category)
-                              <option {{ in_array($category->category_id,$p_categories) ? 'selected': '' }} value="{{ $category->category_id }}">{{ $category->category_name }}</option>
-                           @endforeach
-                        </select>
-                        <div class="hr hr-16 hr-dotted"></div>
-                     </div>
-                     <label></label>
-                  </div>
+            <div class="row mb-4">
+               <label class="col-sm-2 col-label-form">Category</label>
+               <div class="col-sm-10">
+                  <select name="Category" class="form-control" required>
+                     <option value="none" selected="" disabled="">Select a private Category</option>
+                     @foreach ($categories as $category)
+                     <option {{ in_array($category->category_id,$p_categories) ? 'selected': '' }} value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                     @endforeach
+                  </select>
+   
                </div>
             </div>
-            <div class="col-xs-6">
+            {{-- <div class="col-xs-6">
                <div class="widget-box">
                   <div class="widget-header">
                      <h4 class="widget-title">Colors of product</h4>
@@ -237,6 +218,20 @@
                      </div>
                      <label></label>
                   </div>
+               </div>
+            </div> --}}
+
+            <div class="row mb-4">
+               <label class="col-sm-2 col-label-form">Colors of product</label>
+               <div class="col-sm-10">
+                  <select name="privateCat_name" class="form-control" required style="margin-bottom: 50px">
+                     <option value="none" selected="" disabled="">Select a private Category</option>
+                     @foreach ($colors as $color)
+                     <option {{  in_array($color->color_id,$p_colors) ? 'selected' : '' }} value="{{ $color->color_id}}">{{ $color->color_name }}</option>
+                    
+                     @endforeach
+                  </select>
+   
                </div>
             </div>
          </div>

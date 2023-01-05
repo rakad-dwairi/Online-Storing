@@ -30,15 +30,42 @@
             <div class="row">
                 <div class="col-lg-6 col-md-5">
                     <div class="send-message mt-60">
-                        <form id="contact-form" action="https://whizthemes.com/mail-php/other/mail.php">
+
+
+
+
+
+
+
+                        <form id="contact-form" method="post" action="{{ route('feedback') }}" enctype="multipart/form-data">
+                            @csrf
+                      
                             <h4 class="title-1 title-border text-uppercase mb-30">Feedback</h4>
-                            <input type="text" name="name" placeholder="Your name here..." />
-                            <input type="text" name="email" placeholder="Your email here..." />
-                            <input type="text" name="phone" placeholder="Your phone here..." />
-                            <textarea class="custom-textarea" name="message" placeholder="Your feedback here..."></textarea>
-                            <button class="button-one submit-button mt-20" data-text="submit message" type="submit">Send</button>
-                            <p class="form-message"></p>
+
+                            <input type="text" name="name" placeholder="Your name here..." required />
+                            <input type="text" name="email" placeholder="Your email here..." required />
+                            <input type="text" name="phone"  placeholder="Your phone here..." required />
+                            <input type="textaria" class="custom-textarea" name="feedback" placeholder="Your feedback here..." required>
+                            <input type="text" name="status" value="0"  placeholder="Your phone here..." required hidden />
+                            {{-- <div class="text-center">
+                                <input type="submit" class="btn btn-primary float-end" value="Add" />
+                            </div> --}}
+                            @if (\Session::has('success'))
+                            <div class="alert alert-success">
+                                <ul>
+                                    <li>{!! \Session::get('success') !!}</li>
+                                </ul>
+                            </div>
+                              @endif
+                            <button onClick="window.location.reload();" class="button-one submit-button mt-20" data-text="submit message" type="submit">Send</button>
+                    
                         </form>
+
+
+
+
+
+                        
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-7 mt-xs-30">
